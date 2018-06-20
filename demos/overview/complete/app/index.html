@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <title>Overview Widget</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+  <link rel="stylesheet" href="./Overview/css/Overview.css">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+  </style>
+
+  <script>
+    var demoLocation = location.pathname + "Overview";
+
+    var dojoConfig = {
+      packages: [
+        {
+          name: "app",
+          location: demoLocation
+        }
+      ]
+    };
+  </script>
+
+  <script src="https://js.arcgis.com/4.7/"></script>
+
+  <script>
+    var overview;
+
+    require([
+      "app/Overview",
+      "esri/Map",
+      "esri/views/MapView",
+      "dojo/domReady!"
+    ], function (
+      Overview,
+      Map,
+      MapView
+    ) {
+
+      var map = new Map({
+        basemap: "dark-gray"
+      });
+
+      var view = new MapView({
+        container: "viewDiv",
+        zoom: 14,
+        center: [-116.51327133175782, 33.82029520464912],
+        map: map
+      });
+
+      overview = new Overview({
+        view: view
+      });
+
+      view.ui.add(overview, "bottom-right");
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
+
