@@ -11,10 +11,11 @@
 
 # Agenda
 
-- What are Widgets?
+- About Widgets
 - Widget Framework
 - Styling
-- Build A Widget!
+- Environment Setup
+- Build and enhance a Widget
 
 ---
 
