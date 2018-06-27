@@ -25,14 +25,14 @@
 # About
 
 - What? <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Encapsulated UI components <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Cohesive (integrated, unified) <!-- .element: class="fragment" data-fragment-index="3" -->
-  - Single-purpose pieces of functionality <!-- .element: class="fragment" data-fragment-index="4" -->
-- Why? <!-- .element: class="fragment" data-fragment-index="5" -->
-  - Reusable <!-- .element: class="fragment" data-fragment-index="6" -->
-  - Interchangeable <!-- .element: class="fragment" data-fragment-index="7" -->
-- How? <!-- .element: class="fragment" data-fragment-index="8" -->
-  - `esri/Widgets/Widget` <!-- .element: class="fragment" data-fragment-index="9" -->
+  - Encapsulated UI components
+  - Cohesive (integrated, unified)
+  - Single-purpose pieces of functionality
+- Why? <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Reusable
+  - Interchangeable
+- How? <!-- .element: class="fragment" data-fragment-index="3" -->
+  - `esri/Widgets/Widget`
 
 ---
 
@@ -146,7 +146,7 @@ render() {
 
 ---
 
-# Implementing: 2
+# Implementing: Part 2
 
 - <!-- .element: class="fragment" data-fragment-index="1" --> Extend `esri/widgets/Widget`
 
@@ -164,7 +164,7 @@ export = MyWidget;
 
 ---
 
-# Implementing: 3
+# Implementing: Part 3
 
 - <!-- .element: class="fragment" data-fragment-index="1" --> Implement `render`
 
@@ -182,7 +182,7 @@ class MyWidget extends declared(Widget) {
 
 ---
 
-# Implementing: 4
+# Implementing: Part 4
 
 - <!-- .element: class="fragment" data-fragment-index="1" --> Define properties
 
@@ -221,7 +221,7 @@ class MyWidget extends declared(Widget) {
 
 ---
 
-# Unified CSS classes: 2
+# Unified CSS classes: Part 2
 
 ```ts
 // 4.6
@@ -236,7 +236,7 @@ render() {
 
 ---
 
-# Unified CSS classes: 3
+# Unified CSS classes: Part 3
 
 ```ts
 // 4.8
@@ -262,7 +262,7 @@ render() {
 
 ---
 
-# Animation hooks: 2
+# Animation hooks: Part 2
 
 ```ts
 render() {
@@ -305,7 +305,7 @@ class MyWidget extends declared(Widget) {
 
 ---
 
-# Recap
+# Framework Recap
 
 - Views + ViewModels <!-- .element: class="fragment" data-fragment-index="1" -->
 - <!-- .element: class="fragment" data-fragment-index="2" --> `esri/widgets/Widget`
