@@ -385,10 +385,7 @@ class MyWidget extends declared(Widget) {
 
 # Let's build a widget
 
-- [Bookmarks Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-WebMap.html#bookmarks)
-- [Bookmarks Completed Demo](../demos/bookmarks-complete)
-
-![bookmarks](img/bookmarks.png)
+## todo
 
 ---
 
