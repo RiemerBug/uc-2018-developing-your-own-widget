@@ -374,7 +374,7 @@ class MyWidget extends declared(Widget) {
 
 ---
 
-# Sass Recap
+# Styling Recap
 
 - BEM <!-- .element: class="fragment" data-fragment-index="1" -->
 - Sass <!-- .element: class="fragment" data-fragment-index="2" -->
@@ -385,30 +385,13 @@ class MyWidget extends declared(Widget) {
 
 # Let's build a widget
 
-## todo
-
----
-
-# VM: API Design
-
-```ts
-interface BookmarksViewModel {
-  bookmarkItems: Collection<BookmarkItem>;
-  state: "loading" | "ready" | "disabled"; // will be computed property
-  view: MapView;
-  goTo(item: BookmarkItem): IPromise<any>;
-}
-
-interface BookmarkItem {
-  active: Boolean;
-  extent: Extent;
-  name: string;
-}
-```
+## todo build widget
 
 ---
 
 # Build Steps
+
+## todo steps
 
 - [Demo Start](../demos/bookmarks-start/)
 - [HTML Steps](https://github.com/jcfranco/uc-2018-building-your-own-widget/blob/master/demos/HTML-steps.md)
@@ -421,7 +404,7 @@ interface BookmarkItem {
 
 ---
 
-# Let's Recap
+# Final Recap
 
 - Widgets are single functionality UI components
 - We use them for reusability/interchangeability
@@ -432,12 +415,6 @@ interface BookmarkItem {
 - Styling
   - BEM
   - Sass
-
----
-
-## Suggested Session
-
-- [ArcGIS API for JavaScript: Customizing Widgets](https://devsummit2018.schedule.esri.com/schedule/1073688966)
 
 ---
 
@@ -452,9 +429,13 @@ interface BookmarkItem {
 
 ---
 
-# Questions
+## Suggested Sessions
 
-## For example
+### todo suggestions
+
+---
+
+# Question Time
 
 > 🤔 Where can I find the slides/source?
 
@@ -467,8 +448,4 @@ interface BookmarkItem {
 
 ---
 
-<!-- .slide: data-background="img/bg-final.jpg" -->
-
-# Thank you
-
----
+<!-- .slide: data-background="img/bg-final.png" -->
