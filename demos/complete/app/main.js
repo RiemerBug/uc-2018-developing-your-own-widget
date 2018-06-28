@@ -1,4 +1,4 @@
-define(["require", "exports", "esri/views/MapView", "esri/config", "./Demo"], function (require, exports, MapView, config, Demo) {
+define(["require", "exports", "esri/config", "esri/views/MapView", "./WebMapShowcase"], function (require, exports, config, MapView, WebMapShowcase) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     // disable prompting
@@ -10,7 +10,7 @@ define(["require", "exports", "esri/views/MapView", "esri/config", "./Demo"], fu
     //----------------
     //  widget setup
     //----------------
-    var widget = new Demo({ view: view });
+    var widget = new WebMapShowcase({ view: view });
     view.ui.add(widget, "top-right");
 });
 //# sourceMappingURL=main.js.map

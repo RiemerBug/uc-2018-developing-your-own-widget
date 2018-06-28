@@ -29,20 +29,31 @@ import {
 } from "esri/widgets/support/widget";
 
 const CSS = {
-  root: "esri-widget esri-demo",
-  header: "esri-demo__header esri-widget__header",
-  details: "esri-demo__details",
+  root: "esri-widget esri-webmap-showcase",
+  header: "esri-webmap-showcase__header esri-widget__header",
+  headerMain: "esri-webmap-showcase__header--main",
+  details: "esri-webmap-showcase__details",
+  panel: "esri-webmap-showcase__panel",
+  item: "esri-webmap-showcase__item",
+  description: "esri-webmap-showcase__description",
+  urls: "esri-webmap-showcase__urls",
+  link: "esri-webmap-showcase__link-item",
+  loader: "esri-webmap-showcase__loader",
+  countdown: "esri-webmap-showcase__countdown",
+  countdownBar: "esri-webmap-showcase__countdown-bar",
+
+  linkIcon: "esri-webmap-showcase__icon esri-icon-link-external"
 };
 
 const ticksToNext = 10;
 const tickRateInMs = 1000;
 
-interface DemoProperties {
+interface WebMapShowcaseProperties {
   view: MapView;
 }
 
-@subclass("esri.widgets.Demo")
-class Demo extends declared(Widget) {
+@subclass("esri.widgets.WebMapShowcase")
+class WebMapShowcase extends declared(Widget) {
 
   //--------------------------------------------------------------------------
   //
@@ -50,7 +61,7 @@ class Demo extends declared(Widget) {
   //
   //--------------------------------------------------------------------------
 
-  constructor(props: DemoProperties) {
+  constructor(props: WebMapShowcaseProperties) {
     super();
   }
 
@@ -137,9 +148,9 @@ class Demo extends declared(Widget) {
 
   protected renderContent() {
     return (
-      <div class="demo-panel">
+      <div class={CSS.panel} key="content">
         {this.renderInfoCard()}
-          {this.renderCountdown()}
+        {this.renderCountdown()}
       </div>
     );
   }
@@ -148,23 +159,22 @@ class Demo extends declared(Widget) {
     const portalItem: PortalItem = this.active;
 
     return (
-      <div class={CSS.details} key="card">
-        <h1 class={CSS.header}>{portalItem.title}</h1>
+      <div class={CSS.details}>
+        <h1 class={this.classes(CSS.header, CSS.headerMain)}>{portalItem.title}</h1>
 
-        <div class="demo-item">
-          <h2 class="esri-widget__header">Description</h2>
-          <div class="avenir-italic demo-description"
-             innerHTML={portalItem.description} />
+        <div class={CSS.item}>
+          <h2 class={CSS.header}>Description</h2>
+          <div class={CSS.description} innerHTML={portalItem.description} />
         </div>
 
-        <div class="demo-item">
-          <h2 class="esri-widget__header">Last updated</h2>
+        <div class={CSS.item}>
+          <h2 class={CSS.header}>Last updated</h2>
           <div>{portalItem.modified}</div>
         </div>
 
-        <div class="demo-item">
-          <h2 class="esri-widget__header">Links</h2>
-          <div class="demo-urls">
+        <div class={CSS.item}>
+          <h2 class={CSS.header}>Links</h2>
+          <div class={CSS.urls}>
             {this.renderIconLink("Item", `https://www.arcgis.com/home/item.html?id=${portalItem.id}`)}
           </div>
         </div>
@@ -174,15 +184,15 @@ class Demo extends declared(Widget) {
 
   protected renderIconLink(label: string, href: string) {
     return (
-      <a class="demo-link-item" href={href} target="_blank">
-        <span class="demo-icon esri-icon-link-external" /> {label}
+      <a class={CSS.link} href={href} target="_blank">
+        <span class={CSS.linkIcon} /> {label}
       </a>
     );
   }
 
   protected renderLoader() {
     return (
-      <div class="demo-loader" key="loader" />
+      <div class={CSS.loader} key="loader" />
     )
   }
 
@@ -192,8 +202,8 @@ class Demo extends declared(Widget) {
     };
 
     return (
-      <div class="demo-countdown" key="countdown">
-        <div class="demo-countdown-bar" styles={styles} />
+      <div class={CSS.countdown}>
+        <div class={CSS.countdownBar} styles={styles} />
       </div>
     );
   }
@@ -222,4 +232,4 @@ class Demo extends declared(Widget) {
 
 }
 
-export = Demo;
+export = WebMapShowcase;

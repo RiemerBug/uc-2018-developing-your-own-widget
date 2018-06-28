@@ -1,24 +1,25 @@
-.esri-demo {
+.esri-webmap-showcase {
   padding: 16px;
   position: absolute;
 }
-
-.esri-demo__header {
+.esri-webmap-showcase__header--main {
   margin-bottom: 32px;
 }
-
-.demo-panel {
+.esri-webmap-showcase__header {
+  margin-bottom: 24px;
+}
+.esri-webmap-showcase__panel {
   width: 300px;
   display: flex;
   flex-direction: column;
 }
-.demo-description {
+.esri-webmap-showcase__description {
   max-height: 100px;
   overflow-y: auto;
   overflow-x: hidden;
   margin: 0;
 }
-.demo-item:first-child::after {
+.esri-webmap-showcase__item:first-child::after {
   content: "";
   bottom: 0;
   top: 0;
@@ -28,25 +29,25 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.1) , rgba(255, 255, 255, 1));
   pointer-events: none;
 }
-.demo-item {
+.esri-webmap-showcase__item {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
 }
-.demo-urls {
+.esri-webmap-showcase__urls {
   display: flex;
 }
-.demo-loader {
+.esri-webmap-showcase__loader {
   background: url("https://js.arcgis.com/4.8/esri/themes/base/images/loading-throb.gif") no-repeat center;
   width: 39px;
   height: 33px;
 }
-.demo-countdown {
+.esri-webmap-showcase__countdown {
   position: relative;
   height: 8px;
 }
-.demo-countdown-bar {
+.esri-webmap-showcase__countdown-bar {
   position: absolute;
   left: 0px;
   top: 0px;

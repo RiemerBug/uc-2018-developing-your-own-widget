@@ -149,7 +149,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             decorators_1.property()
         ], Demo.prototype, "view", void 0);
         Demo = __decorate([
-            decorators_1.subclass("esri.widgets.Demo")
+            decorators_1.subclass("esri.widgets.WebMapShowcase")
         ], Demo);
         return Demo;
     }(decorators_1.declared(Widget)));
