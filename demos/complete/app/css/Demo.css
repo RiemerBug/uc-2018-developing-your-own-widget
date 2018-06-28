@@ -1,0 +1,67 @@
+.esri-demo {
+  padding: 16px;
+  position: absolute;
+}
+
+.esri-demo__header {
+  margin-bottom: 32px;
+}
+
+.demo-panel {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.demo-description {
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0;
+}
+.demo-item:first-child::after {
+  content: "";
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.1) , rgba(255, 255, 255, 1));
+  pointer-events: none;
+}
+.demo-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+.demo-urls {
+  display: flex;
+}
+.demo-loader {
+  background: url("https://js.arcgis.com/4.8/esri/themes/base/images/loading-throb.gif") no-repeat center;
+  width: 39px;
+  height: 33px;
+}
+.demo-countdown {
+  position: relative;
+  height: 8px;
+}
+.demo-countdown-bar {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-color: #6e6e6e;
+  transition: width 1s linear;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
