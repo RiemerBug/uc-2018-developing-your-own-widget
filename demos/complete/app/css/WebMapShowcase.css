@@ -2,11 +2,15 @@
   padding: 16px;
   position: absolute;
 }
-.esri-webmap-showcase__header--main {
-  margin-bottom: 32px;
+.esri-webmap-showcase p {
+  margin: 0;
+  padding: 0;
 }
 .esri-webmap-showcase__header {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+}
+.esri-webmap-showcase__header--main {
+  margin-bottom: 32px;
 }
 .esri-webmap-showcase__panel {
   width: 300px;
@@ -33,7 +37,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 .esri-webmap-showcase__urls {
   display: flex;
