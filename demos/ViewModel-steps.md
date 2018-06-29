@@ -14,13 +14,8 @@ import { declared, property, subclass } from "esri/core/accessorSupport/decorato
 
 import Accessor = require("esri/core/Accessor");
 
-
 @subclass("demo.BookmarksViewModel")
-class BookmarksViewModel extends declared(Accessor) {
-
-  
-
-}
+class BookmarksViewModel extends declared(Accessor) {}
 
 export = BookmarksViewModel;
 ```
@@ -88,7 +83,7 @@ Our widget will need...
 ### 5. Create a type for the State property
 
 ```ts
-  type State = "ready" | "loading" | "disabled";
+type State = "ready" | "loading" | "disabled";
 ```
 
 ### 6. Import MapView
@@ -132,7 +127,7 @@ We'll store our handles on this variable.
 
 ### 9. Add Lifecycle methods to our widget
 
-- In our initialize lifecycle method,  we'll want to watch for the view to be changed.
+- In our initialize lifecycle method, we'll want to watch for the view to be changed.
 - In our destroy lifecycle method, we'll want to do any necessary cleanup of handles and properties.
 
 ```ts
@@ -213,7 +208,6 @@ So now once a view has been added to the ViewModel, it will watch the view for i
 
 The next and last thing we need to do is to add a public method that will zoom to a `BookmarkItem`.
 
-
 ### 13. Add public goTo method for going to a bookmark extent
 
 This method will also set the `BookmarkItem`'s `active` property to `true` when the zoom animation is occuring and back to `false` when finished.
@@ -269,7 +263,7 @@ Its time to test the ViewModel by compiling it and running in browser.
 #### Compile
 
 ```js
-tsc
+tsc;
 ```
 
 #### Change "Bookmarks" to "Bookmarks/BookmarksViewModel"

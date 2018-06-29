@@ -9,11 +9,7 @@ import PortalItem = require("esri/portal/PortalItem");
 import PortalQueryParams = require("esri/portal/PortalQueryParams");
 
 // esri.core.accessorSupport
-import {
-  declared,
-  property,
-  subclass
-} from "esri/core/accessorSupport/decorators";
+import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
 // esri.core
 import { once } from "esri/core/watchUtils";
@@ -22,11 +18,7 @@ import { once } from "esri/core/watchUtils";
 import Widget = require("esri/widgets/Widget");
 
 // esri.widgets.support
-import {
-  accessibleHandler,
-  renderable,
-  tsx
-} from "esri/widgets/support/widget";
+import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 const CSS = {
   root: "esri-widget esri-webmap-showcase",
@@ -54,7 +46,6 @@ interface WebMapShowcaseProperties {
 
 @subclass("esri.widgets.WebMapShowcase")
 class WebMapShowcase extends declared(Widget) {
-
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
@@ -87,7 +78,6 @@ class WebMapShowcase extends declared(Widget) {
           });
 
           this.scheduleRender();
-
         }, tickRateInMs);
       })
     );
@@ -95,9 +85,10 @@ class WebMapShowcase extends declared(Widget) {
     // TODO: extract to method
     const query = `type:"Web Map" AND -type:"Web Mapping Application"`;
 
-    portal.load()
+    portal
+      .load()
       .then(() => portal.queryItems(new PortalQueryParams({ query })))
-      .then(queryResults => this._set("webMaps", queryResults.results));
+      .then((queryResults) => this._set("webMaps", queryResults.results));
   }
 
   //--------------------------------------------------------------------------
@@ -121,8 +112,7 @@ class WebMapShowcase extends declared(Widget) {
   @property({ readOnly: true })
   readonly webMaps: PortalItem[] = null;
 
-  @property()
-  view: MapView[] = null;
+  @property() view: MapView[] = null;
 
   //--------------------------------------------------------------------------
   //
@@ -131,13 +121,7 @@ class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
-    return (
-      <div class={CSS.root}>
-        {
-          this.active ? this.renderContent() : this.renderLoader()
-        }
-      </div>
-    );
+    return <div class={CSS.root}>{this.active ? this.renderContent() : this.renderLoader()}</div>;
   }
 
   //--------------------------------------------------------------------------
@@ -175,7 +159,10 @@ class WebMapShowcase extends declared(Widget) {
         <div class={CSS.item}>
           <h2 class={CSS.header}>Links</h2>
           <div class={CSS.urls}>
-            {this.renderIconLink("Item", `https://www.arcgis.com/home/item.html?id=${portalItem.id}`)}
+            {this.renderIconLink(
+              "Item",
+              `https://www.arcgis.com/home/item.html?id=${portalItem.id}`
+            )}
           </div>
         </div>
       </div>
@@ -191,14 +178,12 @@ class WebMapShowcase extends declared(Widget) {
   }
 
   protected renderLoader() {
-    return (
-      <div class={CSS.loader} key="loader" />
-    )
+    return <div class={CSS.loader} key="loader" />;
   }
 
   protected renderCountdown() {
     const styles = {
-      width: `${100 - ((this._currentTick) * 11)}%`
+      width: `${100 - this._currentTick * 11}%`
     };
 
     return (
@@ -229,7 +214,6 @@ class WebMapShowcase extends declared(Widget) {
 
     this.view.map = new WebMap({ portalItem }) as any;
   }
-
 }
 
 export = WebMapShowcase;

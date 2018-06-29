@@ -6,65 +6,60 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
 
 #### We'll add some boilerplate to create our widget class
 
-  ```tsx
-  /// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
-  /// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
-  
-  import {
-    declared,
-    subclass
-  } from "esri/core/accessorSupport/decorators";
-  
-  import Widget = require("esri/widgets/Widget");
-  
-  @subclass("demo.Bookmarks")
-  class Bookmarks extends declared(Widget) {
-  
-  }
-  
-  export = Bookmarks;         
-  ```
+```tsx
+/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
+/// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
+
+import { declared, subclass } from "esri/core/accessorSupport/decorators";
+
+import Widget = require("esri/widgets/Widget");
+
+@subclass("demo.Bookmarks")
+class Bookmarks extends declared(Widget) {}
+
+export = Bookmarks;
+```
 
 #### Bring all imports and CSS lookup to simplify steps
 
-  ```tsx
-  // watching properties
-  import watchUtils = require("esri/core/watchUtils");
-  
-  // building Accessor classes
-  import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
-  
-  // handle management
-  import HandleRegistry = require("esri/core/HandleRegistry");
-  
-  // building Widgets
-  import Widget = require("esri/widgets/Widget");
-  import { accessibleHandler, renderable, cssTransition, tsx } from "esri/widgets/support/widget";
-  
-  // bookmarks
-  import BookmarksViewModel = require("./Bookmarks/BookmarksViewModel");
-  import BookmarkItem = require("./Bookmarks/BookmarkItem");
+```tsx
+// watching properties
+import watchUtils = require("esri/core/watchUtils");
 
-  // type for `view` property   
-  import MapView = require("esri/views/MapView");
+// building Accessor classes
+import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
-  // localization  
-  import i18n = require("dojo/i18n!./Bookmarks/nls/Bookmarks");
-  
-  // CSS class lookup object
-  const CSS = {
-      base: "demo-bookmarks",
-      loading: "demo-bookmarks__loading",
-      loadingIcon: "esri-icon-loading-indicator esri-rotating",
-      fadeIn: "demo-bookmarks--fade-in",
-      iconClass: "esri-icon-labels",
-      bookmarkList: "demo-bookmarks__list",
-      bookmarkItem: "demo-bookmarks__item",
-      bookmarkItemIcon: "demo-bookmarks__item-icon",
-      bookmarkItemName: "demo-bookmarks__item-name",
-      bookmarkItemActive: "demo-bookmarks__item--active"
-    };  
-  ```
+// handle management
+import HandleRegistry = require("esri/core/HandleRegistry");
+
+// building Widgets
+import Widget = require("esri/widgets/Widget");
+import { accessibleHandler, renderable, cssTransition, tsx } from "esri/widgets/support/widget";
+
+// bookmarks
+import BookmarksViewModel = require("./Bookmarks/BookmarksViewModel");
+import BookmarkItem = require("./Bookmarks/BookmarkItem");
+
+// type for `view` property
+import MapView = require("esri/views/MapView");
+
+// localization
+import i18n = require("dojo/i18n!./Bookmarks/nls/Bookmarks");
+
+// CSS class lookup object
+const CSS = {
+  base: "demo-bookmarks",
+  loading: "demo-bookmarks__loading",
+  loadingIcon: "esri-icon-loading-indicator esri-rotating",
+  fadeIn: "demo-bookmarks--fade-in",
+  iconClass: "esri-icon-labels",
+  bookmarkList: "demo-bookmarks__list",
+  bookmarkItem: "demo-bookmarks__item",
+  bookmarkItemIcon: "demo-bookmarks__item-icon",
+  bookmarkItemName: "demo-bookmarks__item-name",
+  bookmarkItemActive: "demo-bookmarks__item--active"
+};
+```
 
 #### Add `render` method
 
@@ -90,20 +85,20 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
   //  Private Methods
   //
   //--------------------------------------------------------------------------
-  
+
   private _renderBookmarks(): any {
     const { bookmarkItems } = this.viewModel;
-  
+
     return bookmarkItems.toArray().map(bookmarkItem => this._renderBookmark(bookmarkItem));
   }
-  
+
   private _renderBookmark(bookmarkItem: BookmarkItem): any {
     const { active, name } = bookmarkItem;
-  
+
     const bookmarkItemClasses = {
       [CSS.bookmarkItemActive]: active
     };
-  
+
     return (
       <li bind={this}
           data-bookmark-item={bookmarkItem}
@@ -122,18 +117,18 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
   //  Public Properties
   //
   //--------------------------------------------------------------------------
-  
+
   //----------------------------------
   //  view
   //----------------------------------
-  
+
   @aliasOf("viewModel.view")
   view: MapView = null;
-  
+
   //----------------------------------
   //  viewModel
   //----------------------------------
-  
+
   @property({
     type: BookmarksViewModel
   })
@@ -148,13 +143,13 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
 ```tsx
   render() {
     const bookmarkNodes = this._renderBookmarks();
-  
+
     const { state } = this.viewModel;
-  
+
     const bookmarkListNode = state === "ready" && bookmarkNodes.length ? (
       <ul class={CSS.bookmarkList}>{bookmarkNodes}</ul>
     ) : null;
-  
+
     return (
       <div class={CSS.base}>{bookmarkListNode}</div>
     );
@@ -166,11 +161,11 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
 ```tsx
   private _renderBookmark(bookmarkItem: BookmarkItem): any {
     const { active, name } = bookmarkItem;
-  
+
     const bookmarkItemClasses = {
       [CSS.bookmarkItemActive]: active
     };
-  
+
     return (
       <li bind={this}
           data-bookmark-item={bookmarkItem}
@@ -201,28 +196,28 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
   //  Lifecycle
   //
   //--------------------------------------------------------------------------
-    
+
   constructor(params?: any) {
     super();
   }
-  
+
   postInitialize() {
     this.own(
       watchUtils.on(this, "viewModel.bookmarkItems", "change", () => this._bookmarkItemsChanged())
     );
-  
+
     this._bookmarkItemsChanged();
   }
 ```
 
 ```tsx
-  //--------------------------------------------------------------------------
-  //
-  //  Variables
-  //
-  //--------------------------------------------------------------------------
-  
-  _handles: HandleRegistry = new HandleRegistry();
+//--------------------------------------------------------------------------
+//
+//  Variables
+//
+//--------------------------------------------------------------------------
+
+_handles: HandleRegistry = new HandleRegistry();
 ```
 
 ```tsx
@@ -230,18 +225,18 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
     const itemsKey = "items";
     const { bookmarkItems } = this.viewModel;
     const { _handles } = this;
-  
+
     _handles.remove(itemsKey);
-  
+
     const handles = bookmarkItems.map(bookmarkItem => {
       return watchUtils.watch(bookmarkItem, [
         "active",
         "name"
       ], () => this.scheduleRender());
     });
-  
+
     _handles.add(handles, itemsKey);
-  
+
     this.scheduleRender();
   }
 ```
@@ -257,17 +252,17 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
         <span class={CSS.loadingIcon} />
       </div>
     );
-    
+
     const bookmarkNodes = this._renderBookmarks();
-  
+
     const { state } = this.viewModel;
-  
+
     const bookmarkListNode = state === "ready" && bookmarkNodes.length ? (
       <ul class={CSS.bookmarkList}>{bookmarkNodes}</ul>
     ) : state === "loading" ?
-        loadingNode : 
+        loadingNode :
         null;
-  
+
     return (
       <div class={CSS.base}>{bookmarkListNode}</div>
     );
@@ -279,17 +274,17 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
 ```tsx
   render() {
     const fadeInAnimation = cssTransition("enter", CSS.fadeIn);
-  
+
     const loadingNode = (
       <div class={CSS.loading}>
         <span class={CSS.loadingIcon} />
       </div>
     );
-  
+
     const bookmarkNodes = this._renderBookmarks();
-  
+
     const { state } = this.viewModel;
-  
+
     const bookmarkListNode = state === "ready" && bookmarkNodes.length ? [
         <ul enterAnimation={fadeInAnimation}
             class={CSS.bookmarkList}
@@ -298,7 +293,7 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
                              state === "loading" ?
                              loadingNode :
                              null;
-  
+
     return (
       <div class={CSS.base}>{bookmarkListNode}</div>
     );
@@ -310,17 +305,17 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
 ```tsx
   render() {
     const fadeInAnimation = cssTransition("enter", CSS.fadeIn);
-  
+
     const loadingNode = (
       <div class={CSS.loading}>
         <span class={CSS.loadingIcon} />
       </div>
     );
-  
+
     const bookmarkNodes = this._renderBookmarks();
-  
+
     const { state } = this.viewModel;
-  
+
     const bookmarkListNode = state === "ready" && bookmarkNodes.length ? [
         <ul enterAnimation={fadeInAnimation}
             aria-label={i18n.label}
@@ -330,7 +325,7 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
                              state === "loading" ?
                              loadingNode :
                              null;
-  
+
     return (
       <div class={CSS.base}>{bookmarkListNode}</div>
     );
@@ -340,11 +335,11 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
 ```tsx
   private _renderBookmark(bookmarkItem: BookmarkItem): any {
     const { active, name } = bookmarkItem;
-  
+
     const bookmarkItemClasses = {
       [CSS.bookmarkItemActive]: active
     };
-  
+
     return (
       <li bind={this}
           data-bookmark-item={bookmarkItem}
@@ -366,15 +361,14 @@ Let's create the View for our `Bookmarks` widget. We'll extend `esri/widgets/Wid
   //----------------------------------
   //  iconClass
   //----------------------------------
-  
+
   @property()
   iconClass = CSS.iconClass;
-  
+
   //----------------------------------
   //  label
   //----------------------------------
-  
+
   @property()
   label = i18n.label;
 ```
-
