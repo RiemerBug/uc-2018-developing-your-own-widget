@@ -20,6 +20,10 @@ import Widget = require("esri/widgets/Widget");
 // esri.widgets.support
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
+// todo: rtl support with sass
+// todo: iconclass and label
+// todo: a11y testing
+
 const CSS = {
   root: "esri-webmap-showcase",
   header: "esri-webmap-showcase__header",
