@@ -30,22 +30,21 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 const CSS = {
   root: "esri-webmap-showcase",
   header: "esri-webmap-showcase__header",
-  headerMain: "esri-webmap-showcase__header--main",
   details: "esri-webmap-showcase__details",
+  itemLink: "esri-webmap-showcase__item-link",
+  modifiedDate: "esri-webmap-showcase__modified-date",
+
   panel: "esri-webmap-showcase__panel",
   item: "esri-webmap-showcase__item",
   image: "esri-webmap-showcase__image",
   description: "esri-webmap-showcase__description",
-  urls: "esri-webmap-showcase__urls",
-  link: "esri-webmap-showcase__link-item",
+
   loader: "esri-webmap-showcase__loader",
   countdownBar: "esri-webmap-showcase__countdown-bar",
-  linkIcon: "esri-webmap-showcase__icon",
 
   // common
   esriWidget: "esri-widget",
-  esriHeader: "esri-widget__header",
-  esriIconLinkExternal: "esri-icon-link-external"
+  esriHeader: "esri-widget__header"
 };
 
 const ticksToNext = 10;
@@ -153,7 +152,6 @@ class WebMapShowcase extends declared(Widget) {
     return (
       <div class={CSS.panel} key="content">
         {this.renderInfoCard()}
-        {this.renderCountdown()}
       </div>
     );
   }
@@ -163,39 +161,29 @@ class WebMapShowcase extends declared(Widget) {
 
     return (
       <div class={CSS.details}>
-        <h1 class={this.classes(CSS.esriHeader, CSS.header, CSS.headerMain)}>{portalItem.title}</h1>
-
         <div class={CSS.item}>
           <img class={CSS.image} src={portalItem.thumbnailUrl} />
+          {this.renderCountdown()}
         </div>
 
-        <div class={CSS.item}>
-          <h2 class={CSS.header}>{i18n.description}</h2>
-          <div class={CSS.description} innerHTML={portalItem.description} />
-        </div>
+        <h1 class={this.classes(CSS.esriHeader, CSS.header)}>
+          {this.renderIconLink(
+            portalItem.title,
+            `${portalItem.portal.url}/home/item.html?id=${portalItem.id}`
+          )}
+        </h1>
 
-        <div class={CSS.item}>
-          <h2 class={CSS.header}>{i18n.lastUpdated}</h2>
-          <div>{portalItem.modified}</div>
-        </div>
+        <div class={CSS.modifiedDate}>{portalItem.modified.toLocaleString()}</div>
 
-        <div class={CSS.item}>
-          <h2 class={CSS.header}>{i18n.links}</h2>
-          <div class={CSS.urls}>
-            {this.renderIconLink(
-              i18n.item,
-              `${portalItem.portal.url}/home/item.html?id=${portalItem.id}`
-            )}
-          </div>
-        </div>
+        <div class={CSS.description} innerHTML={portalItem.description} />
       </div>
     );
   }
 
   protected renderIconLink(label: string, href: string) {
     return (
-      <a class={CSS.link} href={href} target="_blank">
-        <span class={this.classes(CSS.esriIconLinkExternal, CSS.linkIcon)} /> {label}
+      <a class={CSS.itemLink} href={href} target="_blank">
+        {label}
       </a>
     );
   }
@@ -232,7 +220,7 @@ class WebMapShowcase extends declared(Widget) {
 
     const webMap = new WebMap({ portalItem });
 
-    webMap.when(() => view.viewpoint = webMap.initialViewProperties.viewpoint);
+    webMap.when(() => (view.viewpoint = webMap.initialViewProperties.viewpoint));
 
     view.map = webMap as any;
   }

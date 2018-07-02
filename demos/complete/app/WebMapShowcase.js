@@ -16,7 +16,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/WebMap", "esri/portal/Portal", "esri/portal/PortalQueryParams", "dojo/i18n!./nls/WebMapShowcase", "esri/core/accessorSupport/decorators", "esri/core/watchUtils", "esri/widgets/Widget", "esri/widgets/support/widget"], function (require, exports, __extends, __decorate, WebMap, Portal, PortalQueryParams, i18n, decorators_1, watchUtils_1, Widget, widget_1) {
+define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/WebMap", "esri/portal/Portal", "esri/portal/PortalQueryParams", "esri/core/accessorSupport/decorators", "esri/core/watchUtils", "esri/widgets/Widget", "esri/widgets/support/widget"], function (require, exports, __extends, __decorate, WebMap, Portal, PortalQueryParams, decorators_1, watchUtils_1, Widget, widget_1) {
     "use strict";
     // todo: a11y testing
     // todo: should show pause/play button to stop automatically changing.
@@ -24,21 +24,18 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
     var CSS = {
         root: "esri-webmap-showcase",
         header: "esri-webmap-showcase__header",
-        headerMain: "esri-webmap-showcase__header--main",
         details: "esri-webmap-showcase__details",
+        itemLink: "esri-webmap-showcase__item-link",
+        modifiedDate: "esri-webmap-showcase__modified-date",
         panel: "esri-webmap-showcase__panel",
         item: "esri-webmap-showcase__item",
         image: "esri-webmap-showcase__image",
         description: "esri-webmap-showcase__description",
-        urls: "esri-webmap-showcase__urls",
-        link: "esri-webmap-showcase__link-item",
         loader: "esri-webmap-showcase__loader",
         countdownBar: "esri-webmap-showcase__countdown-bar",
-        linkIcon: "esri-webmap-showcase__icon",
         // common
         esriWidget: "esri-widget",
-        esriHeader: "esri-widget__header",
-        esriIconLinkExternal: "esri-icon-link-external"
+        esriHeader: "esri-widget__header"
     };
     var ticksToNext = 10;
     var tickRateInMs = 1000;
@@ -110,31 +107,20 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //
         //--------------------------------------------------------------------------
         WebMapShowcase.prototype.renderContent = function () {
-            return (widget_1.tsx("div", { class: CSS.panel, key: "content" },
-                this.renderInfoCard(),
-                this.renderCountdown()));
+            return (widget_1.tsx("div", { class: CSS.panel, key: "content" }, this.renderInfoCard()));
         };
         WebMapShowcase.prototype.renderInfoCard = function () {
             var portalItem = this.active;
             return (widget_1.tsx("div", { class: CSS.details },
-                widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header, CSS.headerMain) }, portalItem.title),
                 widget_1.tsx("div", { class: CSS.item },
-                    widget_1.tsx("img", { class: CSS.image, src: portalItem.thumbnailUrl })),
-                widget_1.tsx("div", { class: CSS.item },
-                    widget_1.tsx("h2", { class: CSS.header }, i18n.description),
-                    widget_1.tsx("div", { class: CSS.description, innerHTML: portalItem.description })),
-                widget_1.tsx("div", { class: CSS.item },
-                    widget_1.tsx("h2", { class: CSS.header }, i18n.lastUpdated),
-                    widget_1.tsx("div", null, portalItem.modified)),
-                widget_1.tsx("div", { class: CSS.item },
-                    widget_1.tsx("h2", { class: CSS.header }, i18n.links),
-                    widget_1.tsx("div", { class: CSS.urls }, this.renderIconLink(i18n.item, portalItem.portal.url + "/home/item.html?id=" + portalItem.id)))));
+                    widget_1.tsx("img", { class: CSS.image, src: portalItem.thumbnailUrl }),
+                    this.renderCountdown()),
+                widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderIconLink(portalItem.title, portalItem.portal.url + "/home/item.html?id=" + portalItem.id)),
+                widget_1.tsx("div", { class: CSS.modifiedDate }, portalItem.modified.toLocaleString()),
+                widget_1.tsx("div", { class: CSS.description, innerHTML: portalItem.description })));
         };
         WebMapShowcase.prototype.renderIconLink = function (label, href) {
-            return (widget_1.tsx("a", { class: CSS.link, href: href, target: "_blank" },
-                widget_1.tsx("span", { class: this.classes(CSS.esriIconLinkExternal, CSS.linkIcon) }),
-                " ",
-                label));
+            return (widget_1.tsx("a", { class: CSS.itemLink, href: href, target: "_blank" }, label));
         };
         WebMapShowcase.prototype.renderLoader = function () {
             return widget_1.tsx("div", { class: CSS.loader, key: "loader" });
@@ -158,7 +144,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             var portalItem = webMaps[index];
             this._set("active", portalItem);
             var webMap = new WebMap({ portalItem: portalItem });
-            webMap.when(function () { return view.viewpoint = webMap.initialViewProperties.viewpoint; });
+            webMap.when(function () { return (view.viewpoint = webMap.initialViewProperties.viewpoint); });
             view.map = webMap;
         };
         __decorate([

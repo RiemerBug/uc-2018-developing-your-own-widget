@@ -2,68 +2,73 @@
   padding: 16px;
   position: absolute;
 }
-.esri-webmap-showcase p {
-  margin: 0;
-  padding: 0;
-}
+
 .esri-webmap-showcase__header {
-  margin-bottom: 16px;
+  margin: 10px 0 2px 0;
 }
-.esri-webmap-showcase__header--main {
-  margin-bottom: 24px;
+
+.esri-webmap-showcase__item-link {
+  text-decoration: none;
 }
+
+.esri-webmap-showcase__item-link:focus,
+.esri-webmap-showcase__item-link:hover {
+  text-decoration: underline;
+}
+
+.esri-webmap-showcase__modified-date {
+  font-size: 12px;
+  color: #999;
+  margin: 0 0 2px 0;
+}
+
 .esri-webmap-showcase__panel {
   width: 300px;
   display: flex;
   flex-direction: column;
 }
+
 .esri-webmap-showcase__image {
-  width: 286px;
-  height: 190px;
+  width: 100%;
 }
+
 .esri-webmap-showcase__description {
-  max-height: 100px;
+  margin: 10px 0 0 0;
+  max-height: 275px;
   overflow-y: auto;
   overflow-x: hidden;
-  margin: 0;
 }
-.esri-webmap-showcase__item:first-child::after {
-  content: "";
-  bottom: 0;
-  top: 0;
-  right: 0;
-  left: 0;
-  position: absolute;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1));
-  pointer-events: none;
-}
+
 .esri-webmap-showcase__item {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
 }
-.esri-webmap-showcase__urls {
-  display: flex;
-}
+
 .esri-webmap-showcase__loader {
   background: url("https://js.arcgis.com/4.8/esri/themes/base/images/loading-throb.gif") no-repeat center;
   width: 39px;
   height: 33px;
 }
+
 .esri-webmap-showcase__countdown-bar {
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
   /* Important Thing */
   -webkit-appearance: none;
 }
 
 .esri-webmap-showcase__countdown-bar::-webkit-progress-bar {
-  background-color: #eee;
+  background-color: #000;
 }
 
 .esri-webmap-showcase__countdown-bar::-webkit-progress-value {
   transition: width 0.95s linear;
-  background-color: lightblue;
+  background-color: #fff;
 }
 
 @keyframes rotation {
