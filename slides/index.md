@@ -11,8 +11,8 @@
 
 # Agenda
 
-- About Widgets
-- Widget Framework
+- About
+- Framework
 - Styling
 - Environment Setup
 - Build and enhance a Widget
@@ -45,12 +45,11 @@
 
 # Architecture
 
-- Views + ViewModels <!-- .element: class="fragment" data-fragment-index="1" -->
+- Built with TypeScript <!-- .element: class="fragment" data-fragment-index="1" -->
 - Separation of concerns <!-- .element: class="fragment" data-fragment-index="2" -->
-- Reusable <!-- .element: class="fragment" data-fragment-index="3" -->
-  - UI replacement <!-- .element: class="fragment" data-fragment-index="4" -->
-  - Easier integration <!-- .element: class="fragment" data-fragment-index="5" -->
-- Built with TypeScript <!-- .element: class="fragment" data-fragment-index="6" -->
+  - Views + ViewModels
+  - UI replacement
+  - Easier integration
 
 ---
 
