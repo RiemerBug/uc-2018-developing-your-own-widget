@@ -128,8 +128,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                     widget_1.tsx("div", null, portalItem.modified)),
                 widget_1.tsx("div", { class: CSS.item },
                     widget_1.tsx("h2", { class: CSS.header }, i18n.links),
-                    widget_1.tsx("div", { class: CSS.urls }, this.renderIconLink(i18n.item, "https://www.arcgis.com/home/item.html?id=" + portalItem.id // todo: should use portal url
-                    )))));
+                    widget_1.tsx("div", { class: CSS.urls }, this.renderIconLink(i18n.item, portalItem.portal.url + "/home/item.html?id=" + portalItem.id)))));
         };
         WebMapShowcase.prototype.renderIconLink = function (label, href) {
             return (widget_1.tsx("a", { class: CSS.link, href: href, target: "_blank" },

@@ -184,7 +184,7 @@ class WebMapShowcase extends declared(Widget) {
           <div class={CSS.urls}>
             {this.renderIconLink(
               i18n.item,
-              `https://www.arcgis.com/home/item.html?id=${portalItem.id}` // todo: should use portal url
+              `${portalItem.portal.url}/home/item.html?id=${portalItem.id}`
             )}
           </div>
         </div>
