@@ -20,7 +20,6 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
     "use strict";
     // todo: a11y testing
     // todo: should show pause/play button to stop automatically changing.
-    // todo: instead of random query, pull from a group id. Use this one by default: http://www.arcgis.com/home/group.html?id=a09a1595fd944f17a47a244e67d804f9#overview
     // homework: should show pause/play button to stop automatically changing.
     var CSS = {
         root: "esri-webmap-showcase",
@@ -64,35 +63,37 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             //
             //--------------------------------------------------------------------------
             _this.active = null;
+            _this.portal = Portal.getDefault();
+            _this.webMapGroupId = "a09a1595fd944f17a47a244e67d804f9";
             _this.webMaps = null;
             _this.view = null;
             return _this;
         }
-        WebMapShowcase.prototype.initialize = function () {
+        WebMapShowcase.prototype.postInitialize = function () {
             var _this = this;
-            // todo: make portal a property. by default use portal.getDefault();
-            var portal = new Portal();
-            this.own(watchUtils_1.once(this, "webMaps", function () {
-                _this._next();
-                var intervalId = setInterval(function () {
-                    _this._currentTick++;
-                    if (_this._currentTick === ticksToNext) {
-                        _this._currentTick = 0;
-                        _this._next();
-                    }
-                    _this.own({
-                        remove: function () {
-                            clearInterval(intervalId);
+            this.own([
+                watchUtils_1.once(this, "webMaps", function () {
+                    _this._next();
+                    var intervalId = setInterval(function () {
+                        _this._currentTick++;
+                        if (_this._currentTick === ticksToNext) {
+                            _this._currentTick = 0;
+                            _this._next();
                         }
-                    });
-                    _this.scheduleRender();
-                }, tickRateInMs);
-            }));
-            // TODO: extract to method
-            var query = "type:\"Web Map\" AND -type:\"Web Mapping Application\"";
+                        _this.own({
+                            remove: function () {
+                                clearInterval(intervalId);
+                            }
+                        });
+                        _this.scheduleRender();
+                    }, tickRateInMs);
+                })
+            ]);
+            var portal = this.portal;
+            var webMapsFromGroupQuery = "group:" + this.webMapGroupId + " AND type:\"Web Map\" AND -type:\"Web Mapping Application\"";
             portal
                 .load()
-                .then(function () { return portal.queryItems(new PortalQueryParams({ query: query })); })
+                .then(function () { return portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })); })
                 .then(function (queryResults) { return _this._set("webMaps", queryResults.results); });
         };
         //--------------------------------------------------------------------------
@@ -163,6 +164,12 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             decorators_1.property({ readOnly: true }),
             widget_1.renderable()
         ], WebMapShowcase.prototype, "active", void 0);
+        __decorate([
+            decorators_1.property()
+        ], WebMapShowcase.prototype, "portal", void 0);
+        __decorate([
+            decorators_1.property()
+        ], WebMapShowcase.prototype, "webMapGroupId", void 0);
         __decorate([
             decorators_1.property({ readOnly: true })
         ], WebMapShowcase.prototype, "webMaps", void 0);

@@ -24,7 +24,6 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 
 // todo: a11y testing
 // todo: should show pause/play button to stop automatically changing.
-// todo: instead of random query, pull from a group id. Use this one by default: http://www.arcgis.com/home/group.html?id=a09a1595fd944f17a47a244e67d804f9#overview
 
 // homework: should show pause/play button to stop automatically changing.
 
@@ -68,11 +67,8 @@ class WebMapShowcase extends declared(Widget) {
     super();
   }
 
-  initialize() {
-    // todo: make portal a property. by default use portal.getDefault();
-    const portal = new Portal();
-
-    this.own(
+  postInitialize() {
+    this.own([
       once(this, "webMaps", () => {
         this._next();
 
@@ -93,14 +89,16 @@ class WebMapShowcase extends declared(Widget) {
           this.scheduleRender();
         }, tickRateInMs);
       })
-    );
+    ]);
 
-    // TODO: extract to method
-    const query = `type:"Web Map" AND -type:"Web Mapping Application"`;
+    const { portal } = this;
+    const webMapsFromGroupQuery = `group:${
+      this.webMapGroupId
+    } AND type:"Web Map" AND -type:"Web Mapping Application"`;
 
     portal
       .load()
-      .then(() => portal.queryItems(new PortalQueryParams({ query })))
+      .then(() => portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })))
       .then((queryResults) => this._set("webMaps", queryResults.results));
   }
 
@@ -121,6 +119,10 @@ class WebMapShowcase extends declared(Widget) {
   @property({ readOnly: true })
   @renderable()
   readonly active: PortalItem = null;
+
+  @property() portal: Portal = Portal.getDefault();
+
+  @property() webMapGroupId: string = "a09a1595fd944f17a47a244e67d804f9";
 
   @property({ readOnly: true })
   readonly webMaps: PortalItem[] = null;
