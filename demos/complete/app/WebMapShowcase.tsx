@@ -21,8 +21,8 @@ import Widget = require("esri/widgets/Widget");
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 const CSS = {
-  root: "esri-widget esri-webmap-showcase",
-  header: "esri-webmap-showcase__header esri-widget__header",
+  root: "esri-webmap-showcase",
+  header: "esri-webmap-showcase__header",
   headerMain: "esri-webmap-showcase__header--main",
   details: "esri-webmap-showcase__details",
   panel: "esri-webmap-showcase__panel",
@@ -33,8 +33,12 @@ const CSS = {
   loader: "esri-webmap-showcase__loader",
   countdown: "esri-webmap-showcase__countdown",
   countdownBar: "esri-webmap-showcase__countdown-bar",
+  linkIcon: "esri-webmap-showcase__icon",
 
-  linkIcon: "esri-webmap-showcase__icon esri-icon-link-external"
+  // common
+  esriWidget: "esri-widget",
+  esriHeader: "esri-widget__header",
+  esriIconLinkExternal: "esri-icon-link-external"
 };
 
 const ticksToNext = 10;
@@ -57,6 +61,7 @@ class WebMapShowcase extends declared(Widget) {
   }
 
   initialize() {
+    // todo: should this be portal.getDefault()?
     const portal = new Portal();
 
     this.own(
@@ -121,7 +126,7 @@ class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
-    return <div class={CSS.root}>{this.active ? this.renderContent() : this.renderLoader()}</div>;
+    return <div class={this.classes(CSS.esriWidget, CSS.root)}>{this.active ? this.renderContent() : this.renderLoader()}</div>;
   }
 
   //--------------------------------------------------------------------------
@@ -144,7 +149,7 @@ class WebMapShowcase extends declared(Widget) {
 
     return (
       <div class={CSS.details}>
-        <h1 class={this.classes(CSS.header, CSS.headerMain)}>{portalItem.title}</h1>
+        <h1 class={this.classes(CSS.esriHeader, CSS.header, CSS.headerMain)}>{portalItem.title}</h1>
 
         <div class={CSS.item}>
           <h2 class={CSS.header}>Description</h2>
@@ -161,7 +166,7 @@ class WebMapShowcase extends declared(Widget) {
           <div class={CSS.urls}>
             {this.renderIconLink(
               "Item",
-              `https://www.arcgis.com/home/item.html?id=${portalItem.id}`
+              `https://www.arcgis.com/home/item.html?id=${portalItem.id}` // todo: should use portal url
             )}
           </div>
         </div>
@@ -172,7 +177,7 @@ class WebMapShowcase extends declared(Widget) {
   protected renderIconLink(label: string, href: string) {
     return (
       <a class={CSS.link} href={href} target="_blank">
-        <span class={CSS.linkIcon} /> {label}
+        <span class={this.classes(CSS.esriIconLinkExternal, CSS.linkIcon)} /> {label}
       </a>
     );
   }
@@ -185,6 +190,8 @@ class WebMapShowcase extends declared(Widget) {
     const styles = {
       width: `${100 - this._currentTick * 11}%`
     };
+
+    // todo: maybe HTML5 progress bar? Would get rid of the inline style
 
     return (
       <div class={CSS.countdown}>
