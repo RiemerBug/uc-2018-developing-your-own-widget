@@ -127,7 +127,7 @@ class WebMapShowcase extends declared(Widget) {
   @property({ readOnly: true })
   readonly webMaps: PortalItem[] = null;
 
-  @property() view: MapView[] = null;
+  @property() view: MapView = null;
 
   //--------------------------------------------------------------------------
   //
