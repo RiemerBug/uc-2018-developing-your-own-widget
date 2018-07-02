@@ -199,7 +199,7 @@ class WebMapShowcase extends declared(Widget) {
 
   protected renderCountdown() {
     const max = 100;
-    const value = max - this._currentTick * 10 + 1;
+    const value = max - this._currentTick * (ticksToNext + 1);
 
     return <progress class={CSS.countdownBar} value={value} max={max} />;
   }

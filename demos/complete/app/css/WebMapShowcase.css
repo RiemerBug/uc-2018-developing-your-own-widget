@@ -49,6 +49,17 @@
 }
 .esri-webmap-showcase__countdown-bar {
   width: 100%;
+  /* Important Thing */
+  -webkit-appearance: none;
+}
+
+.esri-webmap-showcase__countdown-bar::-webkit-progress-bar {
+  background-color: #eee;
+}
+
+.esri-webmap-showcase__countdown-bar::-webkit-progress-value {
+  transition: width 0.95s linear;
+  background-color: lightblue;
 }
 
 @keyframes rotation {

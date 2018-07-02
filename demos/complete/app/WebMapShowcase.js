@@ -138,7 +138,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         };
         WebMapShowcase.prototype.renderCountdown = function () {
             var max = 100;
-            var value = max - this._currentTick * 10 + 1;
+            var value = max - this._currentTick * (ticksToNext + 1);
             return widget_1.tsx("progress", { class: CSS.countdownBar, value: value, max: max });
         };
         //--------------------------------------------------------------------------

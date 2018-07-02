@@ -1,9 +1,9 @@
 define({
   root: ({
-    description: "Descripción",
-    lastUpdated: "Última actualización",
-    links: "Hipervínculos",
-    item: "ít."
+    description: "Description",
+    lastUpdated: "Last updated",
+    links: "Links",
+    item: "Item"
   }),
   "es": 1
 });

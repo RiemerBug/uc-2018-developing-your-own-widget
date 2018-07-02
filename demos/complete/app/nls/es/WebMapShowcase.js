@@ -1,6 +1,6 @@
 define({
-  description: "Description",
-  lastUpdated: "Last updated",
-  links: "Links",
-  item: "Item"
+  description: "Descripción",
+  lastUpdated: "Última actualización",
+  links: "Hipervínculos",
+  item: "ít."
 });
