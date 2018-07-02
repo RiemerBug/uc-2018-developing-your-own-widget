@@ -145,6 +145,7 @@ class WebMapShowcase extends declared(Widget) {
   }
 
   protected renderInfoCard() {
+    // todo: i18n.
     const portalItem: PortalItem = this.active;
 
     return (
