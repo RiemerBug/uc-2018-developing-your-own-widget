@@ -23,6 +23,8 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 // todo: rtl support with sass
 // todo: iconclass and label
 // todo: a11y testing
+// todo: Should show item thumbnail image
+// todo: should show pause/play button to stop automatically changing.
 
 const CSS = {
   root: "esri-webmap-showcase",
