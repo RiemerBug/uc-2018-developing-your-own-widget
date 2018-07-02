@@ -218,7 +218,7 @@ class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   private _next(): void {
-    const { webMaps } = this;
+    const { webMaps, view } = this;
 
     let index = webMaps.indexOf(this.active) + 1;
 
@@ -230,7 +230,11 @@ class WebMapShowcase extends declared(Widget) {
 
     this._set("active", portalItem);
 
-    this.view.map = new WebMap({ portalItem }) as any;
+    const webMap = new WebMap({ portalItem });
+
+    webMap.when(() => view.viewpoint = webMap.initialViewProperties.viewpoint);
+
+    view.map = webMap as any;
   }
 }
 

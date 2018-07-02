@@ -151,14 +151,16 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //
         //--------------------------------------------------------------------------
         WebMapShowcase.prototype._next = function () {
-            var webMaps = this.webMaps;
+            var _a = this, webMaps = _a.webMaps, view = _a.view;
             var index = webMaps.indexOf(this.active) + 1;
             if (index === webMaps.length) {
                 index = 0;
             }
             var portalItem = webMaps[index];
             this._set("active", portalItem);
-            this.view.map = new WebMap({ portalItem: portalItem });
+            var webMap = new WebMap({ portalItem: portalItem });
+            webMap.when(function () { return view.viewpoint = webMap.initialViewProperties.viewpoint; });
+            view.map = webMap;
         };
         __decorate([
             decorators_1.property({ readOnly: true }),
