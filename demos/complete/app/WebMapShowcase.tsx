@@ -25,6 +25,7 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 // todo: a11y testing
 // todo: Should show item thumbnail image
 // todo: should show pause/play button to stop automatically changing.
+// todo: instead of random query, pull from a group id. Use this one by default: http://www.arcgis.com/home/group.html?id=a09a1595fd944f17a47a244e67d804f9#overview
 
 const CSS = {
   root: "esri-webmap-showcase",
@@ -132,7 +133,11 @@ class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
-    return <div class={this.classes(CSS.esriWidget, CSS.root)}>{this.active ? this.renderContent() : this.renderLoader()}</div>;
+    return (
+      <div class={this.classes(CSS.esriWidget, CSS.root)}>
+        {this.active ? this.renderContent() : this.renderLoader()}
+      </div>
+    );
   }
 
   //--------------------------------------------------------------------------
