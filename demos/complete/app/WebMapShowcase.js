@@ -19,7 +19,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/WebMap", "esri/portal/Portal", "esri/portal/PortalQueryParams", "dojo/i18n!./nls/WebMapShowcase", "esri/core/accessorSupport/decorators", "esri/core/watchUtils", "esri/widgets/Widget", "esri/widgets/support/widget"], function (require, exports, __extends, __decorate, WebMap, Portal, PortalQueryParams, i18n, decorators_1, watchUtils_1, Widget, widget_1) {
     "use strict";
     // todo: a11y testing
-    // todo: Should show item thumbnail image
+    // todo: should show pause/play button to stop automatically changing.
     // todo: instead of random query, pull from a group id. Use this one by default: http://www.arcgis.com/home/group.html?id=a09a1595fd944f17a47a244e67d804f9#overview
     // homework: should show pause/play button to stop automatically changing.
     var CSS = {
@@ -29,6 +29,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         details: "esri-webmap-showcase__details",
         panel: "esri-webmap-showcase__panel",
         item: "esri-webmap-showcase__item",
+        image: "esri-webmap-showcase__image",
         description: "esri-webmap-showcase__description",
         urls: "esri-webmap-showcase__urls",
         link: "esri-webmap-showcase__link-item",
@@ -117,7 +118,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             return (widget_1.tsx("div", { class: CSS.details },
                 widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header, CSS.headerMain) }, portalItem.title),
                 widget_1.tsx("div", { class: CSS.item },
-                    widget_1.tsx("h2", { class: CSS.header }, i18n.description),
+                    widget_1.tsx("img", { class: CSS.image, src: portalItem.thumbnailUrl })),
+                widget_1.tsx("div", { class: CSS.item },
+                    widget_1.tsx("h2", { class: CSS.header }, "Description"),
                     widget_1.tsx("div", { class: CSS.description, innerHTML: portalItem.description })),
                 widget_1.tsx("div", { class: CSS.item },
                     widget_1.tsx("h2", { class: CSS.header }, i18n.lastUpdated),

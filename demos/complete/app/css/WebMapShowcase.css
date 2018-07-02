@@ -10,12 +10,16 @@
   margin-bottom: 16px;
 }
 .esri-webmap-showcase__header--main {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .esri-webmap-showcase__panel {
   width: 300px;
   display: flex;
   flex-direction: column;
+}
+.esri-webmap-showcase__image {
+  width: 286px;
+  height: 190px;
 }
 .esri-webmap-showcase__description {
   max-height: 100px;

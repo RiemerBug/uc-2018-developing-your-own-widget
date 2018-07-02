@@ -23,7 +23,7 @@ import Widget = require("esri/widgets/Widget");
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 // todo: a11y testing
-// todo: Should show item thumbnail image
+// todo: should show pause/play button to stop automatically changing.
 // todo: instead of random query, pull from a group id. Use this one by default: http://www.arcgis.com/home/group.html?id=a09a1595fd944f17a47a244e67d804f9#overview
 
 // homework: should show pause/play button to stop automatically changing.
@@ -35,6 +35,7 @@ const CSS = {
   details: "esri-webmap-showcase__details",
   panel: "esri-webmap-showcase__panel",
   item: "esri-webmap-showcase__item",
+  image: "esri-webmap-showcase__image",
   description: "esri-webmap-showcase__description",
   urls: "esri-webmap-showcase__urls",
   link: "esri-webmap-showcase__link-item",
@@ -163,7 +164,11 @@ class WebMapShowcase extends declared(Widget) {
         <h1 class={this.classes(CSS.esriHeader, CSS.header, CSS.headerMain)}>{portalItem.title}</h1>
 
         <div class={CSS.item}>
-          <h2 class={CSS.header}>{i18n.description}</h2>
+          <img class={CSS.image} src={portalItem.thumbnailUrl} />
+        </div>
+
+        <div class={CSS.item}>
+          <h2 class={CSS.header}>Description</h2>
           <div class={CSS.description} innerHTML={portalItem.description} />
         </div>
 
