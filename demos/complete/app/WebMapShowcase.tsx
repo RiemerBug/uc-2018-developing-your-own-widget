@@ -20,14 +20,13 @@ import Widget = require("esri/widgets/Widget");
 // esri.widgets.support
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
-// todo: rtl support with sass
-// todo: iconclass and label
 // todo: a11y testing
 // todo: Should show item thumbnail image
-// todo: should show pause/play button to stop automatically changing.
 // todo: instead of random query, pull from a group id. Use this one by default: http://www.arcgis.com/home/group.html?id=a09a1595fd944f17a47a244e67d804f9#overview
 // todo: use html5 progress bar
 // todo: i18n files
+
+// homework: should show pause/play button to stop automatically changing.
 
 const CSS = {
   root: "esri-webmap-showcase",
