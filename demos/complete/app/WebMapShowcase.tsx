@@ -26,6 +26,8 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 // todo: Should show item thumbnail image
 // todo: should show pause/play button to stop automatically changing.
 // todo: instead of random query, pull from a group id. Use this one by default: http://www.arcgis.com/home/group.html?id=a09a1595fd944f17a47a244e67d804f9#overview
+// todo: use html5 progress bar
+// todo: i18n files
 
 const CSS = {
   root: "esri-webmap-showcase",
@@ -68,7 +70,7 @@ class WebMapShowcase extends declared(Widget) {
   }
 
   initialize() {
-    // todo: should this be portal.getDefault()?
+    // todo: make portal a property. by default use portal.getDefault();
     const portal = new Portal();
 
     this.own(
@@ -156,7 +158,6 @@ class WebMapShowcase extends declared(Widget) {
   }
 
   protected renderInfoCard() {
-    // todo: i18n.
     const portalItem: PortalItem = this.active;
 
     return (
