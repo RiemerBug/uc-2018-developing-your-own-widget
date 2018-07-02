@@ -170,7 +170,7 @@ class WebMapShowcase extends declared(Widget) {
         </div>
 
         <div class={CSS.item}>
-          <h2 class={CSS.header}>Description</h2>
+          <h2 class={CSS.header}>{i18n.description}</h2>
           <div class={CSS.description} innerHTML={portalItem.description} />
         </div>
 

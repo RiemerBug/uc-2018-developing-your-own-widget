@@ -121,7 +121,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                 widget_1.tsx("div", { class: CSS.item },
                     widget_1.tsx("img", { class: CSS.image, src: portalItem.thumbnailUrl })),
                 widget_1.tsx("div", { class: CSS.item },
-                    widget_1.tsx("h2", { class: CSS.header }, "Description"),
+                    widget_1.tsx("h2", { class: CSS.header }, i18n.description),
                     widget_1.tsx("div", { class: CSS.description, innerHTML: portalItem.description })),
                 widget_1.tsx("div", { class: CSS.item },
                     widget_1.tsx("h2", { class: CSS.header }, i18n.lastUpdated),
