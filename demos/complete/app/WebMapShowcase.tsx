@@ -8,6 +8,8 @@ import Portal = require("esri/portal/Portal");
 import PortalItem = require("esri/portal/PortalItem");
 import PortalQueryParams = require("esri/portal/PortalQueryParams");
 
+import i18n = require("dojo/i18n!./nls/WebMapShowcase");
+
 // esri.core.accessorSupport
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
@@ -23,8 +25,6 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 // todo: a11y testing
 // todo: Should show item thumbnail image
 // todo: instead of random query, pull from a group id. Use this one by default: http://www.arcgis.com/home/group.html?id=a09a1595fd944f17a47a244e67d804f9#overview
-// todo: use html5 progress bar
-// todo: i18n files
 
 // homework: should show pause/play button to stop automatically changing.
 
@@ -39,7 +39,6 @@ const CSS = {
   urls: "esri-webmap-showcase__urls",
   link: "esri-webmap-showcase__link-item",
   loader: "esri-webmap-showcase__loader",
-  countdown: "esri-webmap-showcase__countdown",
   countdownBar: "esri-webmap-showcase__countdown-bar",
   linkIcon: "esri-webmap-showcase__icon",
 
@@ -164,20 +163,20 @@ class WebMapShowcase extends declared(Widget) {
         <h1 class={this.classes(CSS.esriHeader, CSS.header, CSS.headerMain)}>{portalItem.title}</h1>
 
         <div class={CSS.item}>
-          <h2 class={CSS.header}>Description</h2>
+          <h2 class={CSS.header}>{i18n.description}</h2>
           <div class={CSS.description} innerHTML={portalItem.description} />
         </div>
 
         <div class={CSS.item}>
-          <h2 class={CSS.header}>Last updated</h2>
+          <h2 class={CSS.header}>{i18n.lastUpdated}</h2>
           <div>{portalItem.modified}</div>
         </div>
 
         <div class={CSS.item}>
-          <h2 class={CSS.header}>Links</h2>
+          <h2 class={CSS.header}>{i18n.links}</h2>
           <div class={CSS.urls}>
             {this.renderIconLink(
-              "Item",
+              i18n.item,
               `https://www.arcgis.com/home/item.html?id=${portalItem.id}` // todo: should use portal url
             )}
           </div>
@@ -199,17 +198,10 @@ class WebMapShowcase extends declared(Widget) {
   }
 
   protected renderCountdown() {
-    const styles = {
-      width: `${100 - this._currentTick * 11}%`
-    };
+    const max = 100;
+    const value = max - this._currentTick * 10 + 1;
 
-    // todo: maybe HTML5 progress bar? Would get rid of the inline style
-
-    return (
-      <div class={CSS.countdown}>
-        <div class={CSS.countdownBar} styles={styles} />
-      </div>
-    );
+    return <progress class={CSS.countdownBar} value={value} max={max} />;
   }
 
   //--------------------------------------------------------------------------

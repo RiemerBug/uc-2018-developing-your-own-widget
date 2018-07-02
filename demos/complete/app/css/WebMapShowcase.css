@@ -47,17 +47,8 @@
   width: 39px;
   height: 33px;
 }
-.esri-webmap-showcase__countdown {
-  position: relative;
-  height: 8px;
-}
 .esri-webmap-showcase__countdown-bar {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
-  background-color: #6e6e6e;
-  transition: width 1s linear;
+  width: 100%;
 }
 
 @keyframes rotation {
