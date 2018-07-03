@@ -6,6 +6,7 @@ import Widget = require("esri/widgets/Widget");
 
 import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
 
+import i18n = require("dojo/i18n!./nls/WebMapShowcase");
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 import { once } from "esri/core/watchUtils";
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
@@ -19,6 +20,7 @@ const CSS = {
 
   panel: "esri-webmap-showcase__panel",
   item: "esri-webmap-showcase__item",
+  itemControl: "esri-webmap-showcase__item-control",
   image: "esri-webmap-showcase__image",
   imagePaused: "esri-webmap-showcase__image--paused",
   description: "esri-webmap-showcase__description",
@@ -28,7 +30,9 @@ const CSS = {
 
   // common
   esriWidget: "esri-widget",
-  esriHeader: "esri-widget__header"
+  esriHeader: "esri-widget__header",
+  esriIconPlay: "esri-icon-play",
+  esriIconPause: "esri-icon-pause"
 };
 
 const ticksToNext = 10;
@@ -142,19 +146,30 @@ class WebMapShowcase extends declared(Widget) {
   protected renderInfoCard() {
     const { active } = this.viewModel;
 
-    const thumbnailClasses = {
-      [CSS.imagePaused]: !this._playing
+    // todo
+    const playing = this._playing;
+
+    const iconClasses = {
+      [CSS.esriIconPlay]: !playing,
+      [CSS.esriIconPause]: playing
     };
+
+    const buttonText = playing ? i18n.pause : i18n.play;
 
     return (
       <div class={CSS.details}>
         <div
           class={CSS.item}
+          bind={this}
           tabIndex={0}
+          role="button"
+          title={buttonText}
+          aria-label={buttonText}
           onclick={this._toggleCountdown}
-          onkeypress={this._toggleCountdown}
+          onkeydown={this._toggleCountdown}
         >
-          <img class={this.classes(CSS.image, thumbnailClasses)} src={active.thumbnailUrl} />
+          <span aria-hidden="true" class={this.classes(CSS.itemControl, iconClasses)} />
+          <img alt={active.title} class={CSS.image} src={active.thumbnailUrl} />
           {this.renderCountdown()}
         </div>
 
@@ -162,7 +177,9 @@ class WebMapShowcase extends declared(Widget) {
           {this.renderIconLink(active.title, `${active.portal.url}/home/item.html?id=${active.id}`)}
         </h1>
 
-        <div class={CSS.modifiedDate}>{active.modified.toLocaleString()}</div>
+        <div class={CSS.modifiedDate}>
+          {i18n.lastUpdated} {active.modified.toLocaleString()}
+        </div>
 
         <div class={CSS.description} innerHTML={active.description} />
       </div>

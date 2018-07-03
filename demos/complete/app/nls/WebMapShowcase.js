@@ -1,9 +1,8 @@
 define({
   root: ({
-    description: "Description",
+    play: "Play",
+    pause: "Pause",
     lastUpdated: "Last updated",
-    links: "Links",
-    item: "Item"
   }),
   "es": 1
 });

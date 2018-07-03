@@ -3,8 +3,78 @@
   position: absolute;
 }
 
+.esri-webmap-showcase__loader {
+  background: url("https://js.arcgis.com/4.8/esri/themes/base/images/loading-throb.gif") no-repeat center;
+  width: 39px;
+  height: 33px;
+}
+
 .esri-webmap-showcase__header {
-  margin: 10px 0 2px 0;
+  margin: 10px 0 4px 0;
+}
+
+.esri-webmap-showcase__panel {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.esri-webmap-showcase__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.esri-webmap-showcase__item-control {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 64px;
+  line-height: 64px;
+  margin: -32px 0 0 -32px;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.esri-webmap-showcase__item:hover .esri-webmap-showcase__item-control {
+  display: block;
+}
+
+.esri-webmap-showcase__item--play:hover,
+.esri-webmap-showcase__item--play:focus {
+  background-image: play;
+}
+
+.esri-webmap-showcase__item--pause:hover,
+.esri-webmap-showcase__item--pause:focus {
+  background-image: play;
+}
+
+.esri-webmap-showcase__countdown-bar {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  height: 10px;
+  /* Important Thing */
+  -webkit-appearance: none;
+}
+
+.esri-webmap-showcase__countdown-bar::-webkit-progress-bar {
+  background-color: #000;
+}
+
+.esri-webmap-showcase__countdown-bar::-webkit-progress-value {
+  transition: width 0.95s linear;
+  background-color: #fff;
+}
+
+.esri-webmap-showcase__image {
+  width: 100%;
 }
 
 .esri-webmap-showcase__item-link {
@@ -18,24 +88,8 @@
 
 .esri-webmap-showcase__modified-date {
   font-size: 12px;
-  color: #999;
+  color: #666;
   margin: 0 0 2px 0;
-}
-
-.esri-webmap-showcase__panel {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-}
-
-.esri-webmap-showcase__image {
-  width: 100%;
-  cursor: pointer;
-  transition: opacity 175ms ease-in;
-}
-
-.esri-webmap-showcase__image--paused {
-  opacity: 0.5;
 }
 
 .esri-webmap-showcase__description {
@@ -43,38 +97,6 @@
   max-height: 275px;
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.esri-webmap-showcase__item {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 24px;
-}
-
-.esri-webmap-showcase__loader {
-  background: url("https://js.arcgis.com/4.8/esri/themes/base/images/loading-throb.gif") no-repeat center;
-  width: 39px;
-  height: 33px;
-}
-
-.esri-webmap-showcase__countdown-bar {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  opacity: 0.5;
-  /* Important Thing */
-  -webkit-appearance: none;
-}
-
-.esri-webmap-showcase__countdown-bar::-webkit-progress-bar {
-  background-color: #000;
-}
-
-.esri-webmap-showcase__countdown-bar::-webkit-progress-value {
-  transition: width 0.95s linear;
-  background-color: #fff;
 }
 
 @keyframes rotation {

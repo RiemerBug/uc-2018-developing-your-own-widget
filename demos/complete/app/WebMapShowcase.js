@@ -16,7 +16,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/widgets/Widget", "./WebMapShowcaseViewModel", "esri/core/accessorSupport/decorators", "esri/core/watchUtils", "esri/widgets/support/widget"], function (require, exports, __extends, __decorate, Widget, WebMapShowcaseViewModel, decorators_1, watchUtils_1, widget_1) {
+define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/widgets/Widget", "./WebMapShowcaseViewModel", "dojo/i18n!./nls/WebMapShowcase", "esri/core/accessorSupport/decorators", "esri/core/watchUtils", "esri/widgets/support/widget"], function (require, exports, __extends, __decorate, Widget, WebMapShowcaseViewModel, i18n, decorators_1, watchUtils_1, widget_1) {
     "use strict";
     var CSS = {
         root: "esri-webmap-showcase",
@@ -26,6 +26,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         modifiedDate: "esri-webmap-showcase__modified-date",
         panel: "esri-webmap-showcase__panel",
         item: "esri-webmap-showcase__item",
+        itemControl: "esri-webmap-showcase__item-control",
         image: "esri-webmap-showcase__image",
         imagePaused: "esri-webmap-showcase__image--paused",
         description: "esri-webmap-showcase__description",
@@ -33,7 +34,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         countdownBar: "esri-webmap-showcase__countdown-bar",
         // common
         esriWidget: "esri-widget",
-        esriHeader: "esri-widget__header"
+        esriHeader: "esri-widget__header",
+        esriIconPlay: "esri-icon-play",
+        esriIconPause: "esri-icon-pause"
     };
     var ticksToNext = 10;
     var tickRateInMs = 1000;
@@ -108,15 +111,23 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         };
         WebMapShowcase.prototype.renderInfoCard = function () {
             var active = this.viewModel.active;
-            var thumbnailClasses = (_a = {},
-                _a[CSS.imagePaused] = !this._playing,
+            // todo
+            var playing = this._playing;
+            var iconClasses = (_a = {},
+                _a[CSS.esriIconPlay] = !playing,
+                _a[CSS.esriIconPause] = playing,
                 _a);
+            var buttonText = playing ? i18n.pause : i18n.play;
             return (widget_1.tsx("div", { class: CSS.details },
-                widget_1.tsx("div", { class: CSS.item, tabIndex: 0, onclick: this._toggleCountdown, onkeypress: this._toggleCountdown },
-                    widget_1.tsx("img", { class: this.classes(CSS.image, thumbnailClasses), src: active.thumbnailUrl }),
+                widget_1.tsx("div", { class: CSS.item, bind: this, tabIndex: 0, role: "button", title: buttonText, "aria-label": buttonText, onclick: this._toggleCountdown, onkeydown: this._toggleCountdown },
+                    widget_1.tsx("span", { "aria-hidden": "true", class: this.classes(CSS.itemControl, iconClasses) }),
+                    widget_1.tsx("img", { alt: active.title, class: CSS.image, src: active.thumbnailUrl }),
                     this.renderCountdown()),
                 widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderIconLink(active.title, active.portal.url + "/home/item.html?id=" + active.id)),
-                widget_1.tsx("div", { class: CSS.modifiedDate }, active.modified.toLocaleString()),
+                widget_1.tsx("div", { class: CSS.modifiedDate },
+                    i18n.lastUpdated,
+                    " ",
+                    active.modified.toLocaleString()),
                 widget_1.tsx("div", { class: CSS.description, innerHTML: active.description })));
             var _a;
         };
