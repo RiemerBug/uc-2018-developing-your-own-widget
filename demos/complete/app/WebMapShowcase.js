@@ -28,7 +28,6 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         item: "esri-webmap-showcase__item",
         itemControl: "esri-webmap-showcase__item-control",
         image: "esri-webmap-showcase__image",
-        imagePaused: "esri-webmap-showcase__image--paused",
         description: "esri-webmap-showcase__description",
         loader: "esri-webmap-showcase__loader",
         countdownBar: "esri-webmap-showcase__countdown-bar",
@@ -111,13 +110,12 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         };
         WebMapShowcase.prototype.renderInfoCard = function () {
             var active = this.viewModel.active;
-            // todo
-            var playing = this._playing;
+            var _playing = this._playing;
             var iconClasses = (_a = {},
-                _a[CSS.esriIconPlay] = !playing,
-                _a[CSS.esriIconPause] = playing,
+                _a[CSS.esriIconPlay] = !_playing,
+                _a[CSS.esriIconPause] = _playing,
                 _a);
-            var buttonText = playing ? i18n.pause : i18n.play;
+            var buttonText = _playing ? i18n.pause : i18n.play;
             return (widget_1.tsx("div", { class: CSS.details },
                 widget_1.tsx("div", { class: CSS.item, bind: this, tabIndex: 0, role: "button", title: buttonText, "aria-label": buttonText, onclick: this._toggleCountdown, onkeydown: this._toggleCountdown },
                     widget_1.tsx("span", { "aria-hidden": "true", class: this.classes(CSS.itemControl, iconClasses) }),
