@@ -6,25 +6,19 @@
 cd <project-directory>
 ```
 
-## Initialize project (`package.json` with defaults)
+## Initialize project with defaults (for demo purposes)
 
 ```
 npm init --yes
 ```
 
-## Install dependencies
+## Install dependencies and JS API typings
 
 ```
-npm install --save-dev typescript
+npm install --save-dev typescript @types/arcgis-js-api
 ```
 
-## Install typings
-
-```
-npm install --save-dev @types/arcgis-js-api
-```
-
-## Provide TypeScript compiler options (taken from JS API guide page)
+## Create a config file (`tsconfig.json`) for the TypeScript compiler (https://developers.arcgis.com/javascript/latest/guide/typescript-setup/index.html#compile-typescript)
 
 ```json
 {
@@ -48,28 +42,26 @@ npm install --save-dev @types/arcgis-js-api
 }
 ```
 
-## Let's create a simple TypeScript file (`main.ts`) in the `app` directory
-
-```ts
-import EsriMap = require("esri/Map");
-import MapView = require("esri/views/MapView");
-
-const map = new EsriMap({
-  basemap: "streets"
-});
-
-const view = new MapView({
-  map: map,
-  container: "viewDiv",
-  center: [-118.244, 34.052],
-  zoom: 12
-});
-```
-
 ## Let's build our app by running the TypeScript compiler and enabling the `watch` flag
 
 ```
 tsc -w
 ```
 
-## Our code is now compiled and we can now run our application
+## Let's update `main.ts` in the `app` directory
+
+```ts
+import EsriMap = require("esri/Map");
+import MapView = require("esri/views/MapView");
+
+const map = new EsriMap({
+  basemap: "streets-vector"
+});
+
+const view = new MapView({
+  map: map,
+  container: "viewDiv",
+  center: [-117.1628487109789, 32.706813240831096],
+  zoom: 15
+});
+```
