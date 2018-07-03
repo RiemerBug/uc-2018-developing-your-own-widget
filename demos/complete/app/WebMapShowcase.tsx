@@ -2,15 +2,12 @@
 /// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
 
 import MapView = require("esri/views/MapView");
-// esri.widgets
 import Widget = require("esri/widgets/Widget");
+
 import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
 
-// esri.core.accessorSupport
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
-// esri.core
 import { once } from "esri/core/watchUtils";
-// esri.widgets.support
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 const CSS = {
@@ -73,9 +70,7 @@ class WebMapShowcase extends declared(Widget) {
           }
 
           this.own({
-            remove() {
-              clearInterval(intervalId);
-            }
+            remove: () => clearInterval(intervalId)
           });
 
           this.scheduleRender();
@@ -192,6 +187,12 @@ class WebMapShowcase extends declared(Widget) {
 
     return <progress class={CSS.countdownBar} value={value} max={max} />;
   }
+
+  //--------------------------------------------------------------------------
+  //
+  //  Private Methods
+  //
+  //--------------------------------------------------------------------------
 
   @accessibleHandler()
   private _toggleCountdown(): void {

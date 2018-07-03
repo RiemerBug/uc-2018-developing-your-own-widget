@@ -83,9 +83,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                         _this.viewModel.next();
                     }
                     _this.own({
-                        remove: function () {
-                            clearInterval(intervalId);
-                        }
+                        remove: function () { return clearInterval(intervalId); }
                     });
                     _this.scheduleRender();
                 }, tickRateInMs);
@@ -133,6 +131,11 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             var value = max - this._currentTick * (ticksToNext + 1);
             return widget_1.tsx("progress", { class: CSS.countdownBar, value: value, max: max });
         };
+        //--------------------------------------------------------------------------
+        //
+        //  Private Methods
+        //
+        //--------------------------------------------------------------------------
         WebMapShowcase.prototype._toggleCountdown = function () {
             this._playing = !this._playing;
             this.scheduleRender();
