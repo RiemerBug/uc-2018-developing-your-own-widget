@@ -52,8 +52,6 @@ class WebMapShowcase extends declared(Widget) {
 
   constructor(props: WebMapShowcaseProperties) {
     super();
-
-    this._toggleCountdown = this._toggleCountdown.bind(this);
   }
 
   postInitialize() {

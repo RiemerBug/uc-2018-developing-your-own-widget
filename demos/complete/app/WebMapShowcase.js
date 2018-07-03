@@ -68,7 +68,6 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             //  viewModel
             //----------------------------------
             _this.viewModel = new WebMapShowcaseViewModel();
-            _this._toggleCountdown = _this._toggleCountdown.bind(_this);
             return _this;
         }
         WebMapShowcase.prototype.postInitialize = function () {
