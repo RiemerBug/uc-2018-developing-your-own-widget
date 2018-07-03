@@ -26,14 +26,18 @@
 .esri-webmap-showcase__item-control-icon {
   display: none;
   position: absolute;
+  padding: 20px;
+  border-radius: 64px;
+  text-align: center;
+  background-color: #fff;
   top: 50%;
   left: 50%;
   font-size: 64px;
+  font-weight: bold;
   line-height: 64px;
-  margin: -32px 0 0 -32px;
-  color: #fff;
+  margin: -57px 0 0 -52px;
+  color: #000;
   opacity: 0.75;
-  text-shadow: 2px 2px 4px #000;
 }
 
 .esri-webmap-showcase__item-control:focus .esri-webmap-showcase__item-control-icon,
