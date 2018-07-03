@@ -146,15 +146,14 @@ class WebMapShowcase extends declared(Widget) {
   protected renderInfoCard() {
     const { active } = this.viewModel;
 
-    // todo
-    const playing = this._playing;
+    const { _playing } = this;
 
     const iconClasses = {
-      [CSS.esriIconPlay]: !playing,
-      [CSS.esriIconPause]: playing
+      [CSS.esriIconPlay]: !_playing,
+      [CSS.esriIconPause]: _playing
     };
 
-    const buttonText = playing ? i18n.pause : i18n.play;
+    const buttonText = _playing ? i18n.pause : i18n.play;
 
     return (
       <div class={CSS.details}>
