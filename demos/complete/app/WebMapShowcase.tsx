@@ -7,6 +7,7 @@ import Widget = require("esri/widgets/Widget");
 import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
 
 import i18n = require("dojo/i18n!./nls/WebMapShowcase");
+
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 import { once } from "esri/core/watchUtils";
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
@@ -22,7 +23,6 @@ const CSS = {
   item: "esri-webmap-showcase__item",
   itemControl: "esri-webmap-showcase__item-control",
   image: "esri-webmap-showcase__image",
-  imagePaused: "esri-webmap-showcase__image--paused",
   description: "esri-webmap-showcase__description",
 
   loader: "esri-webmap-showcase__loader",
