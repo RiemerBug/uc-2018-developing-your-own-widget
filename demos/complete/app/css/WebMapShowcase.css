@@ -30,6 +30,12 @@
 
 .esri-webmap-showcase__image {
   width: 100%;
+  cursor: pointer;
+  transition: opacity 175ms ease-in;
+}
+
+.esri-webmap-showcase__image--paused {
+  opacity: 0.5;
 }
 
 .esri-webmap-showcase__description {

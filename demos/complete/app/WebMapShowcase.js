@@ -16,11 +16,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/core/accessorSupport/decorators", "esri/core/watchUtils", "esri/widgets/Widget", "esri/widgets/support/widget", "./WebMapShowcaseViewModel"], function (require, exports, __extends, __decorate, decorators_1, watchUtils_1, Widget, widget_1, WebMapShowcaseViewModel) {
+define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/widgets/Widget", "./WebMapShowcaseViewModel", "esri/core/accessorSupport/decorators", "esri/core/watchUtils", "esri/widgets/support/widget"], function (require, exports, __extends, __decorate, Widget, WebMapShowcaseViewModel, decorators_1, watchUtils_1, widget_1) {
     "use strict";
-    // todo: a11y testing
-    // todo: should show pause/play button to stop automatically changing.
-    // homework: should show pause/play button to stop automatically changing.
     var CSS = {
         root: "esri-webmap-showcase",
         header: "esri-webmap-showcase__header",
@@ -30,6 +27,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         panel: "esri-webmap-showcase__panel",
         item: "esri-webmap-showcase__item",
         image: "esri-webmap-showcase__image",
+        imagePaused: "esri-webmap-showcase__image--paused",
         description: "esri-webmap-showcase__description",
         loader: "esri-webmap-showcase__loader",
         countdownBar: "esri-webmap-showcase__countdown-bar",
@@ -54,34 +52,44 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             //
             //--------------------------------------------------------------------------
             _this._currentTick = 0;
+            _this._playing = false;
             //--------------------------------------------------------------------------
             //
             //  Properties
             //
             //--------------------------------------------------------------------------
+            //----------------------------------
+            //  view
+            //----------------------------------
             _this.view = null;
+            //----------------------------------
+            //  viewModel
+            //----------------------------------
             _this.viewModel = new WebMapShowcaseViewModel();
+            _this._toggleCountdown = _this._toggleCountdown.bind(_this);
             return _this;
         }
         WebMapShowcase.prototype.postInitialize = function () {
             var _this = this;
-            this.own([
-                watchUtils_1.once(this, "viewModel.webMaps", function () {
-                    var intervalId = setInterval(function () {
-                        _this._currentTick++;
-                        if (_this._currentTick === ticksToNext) {
-                            _this._currentTick = 0;
-                            _this.viewModel.next();
+            this.own(watchUtils_1.once(this, "viewModel.webMaps", function () {
+                _this._playing = true;
+                var intervalId = setInterval(function () {
+                    if (!_this._playing) {
+                        return;
+                    }
+                    _this._currentTick++;
+                    if (_this._currentTick === ticksToNext) {
+                        _this._currentTick = 0;
+                        _this.viewModel.next();
+                    }
+                    _this.own({
+                        remove: function () {
+                            clearInterval(intervalId);
                         }
-                        _this.own({
-                            remove: function () {
-                                clearInterval(intervalId);
-                            }
-                        });
-                        _this.scheduleRender();
-                    }, tickRateInMs);
-                })
-            ]);
+                    });
+                    _this.scheduleRender();
+                }, tickRateInMs);
+            }));
         };
         //--------------------------------------------------------------------------
         //
@@ -102,13 +110,17 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         };
         WebMapShowcase.prototype.renderInfoCard = function () {
             var active = this.viewModel.active;
+            var thumbnailClasses = (_a = {},
+                _a[CSS.imagePaused] = !this._playing,
+                _a);
             return (widget_1.tsx("div", { class: CSS.details },
-                widget_1.tsx("div", { class: CSS.item },
-                    widget_1.tsx("img", { class: CSS.image, src: active.thumbnailUrl }),
+                widget_1.tsx("div", { class: CSS.item, tabIndex: 0, onclick: this._toggleCountdown, onkeypress: this._toggleCountdown },
+                    widget_1.tsx("img", { class: this.classes(CSS.image, thumbnailClasses), src: active.thumbnailUrl }),
                     this.renderCountdown()),
                 widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderIconLink(active.title, active.portal.url + "/home/item.html?id=" + active.id)),
                 widget_1.tsx("div", { class: CSS.modifiedDate }, active.modified.toLocaleString()),
                 widget_1.tsx("div", { class: CSS.description, innerHTML: active.description })));
+            var _a;
         };
         WebMapShowcase.prototype.renderIconLink = function (label, href) {
             return (widget_1.tsx("a", { class: CSS.itemLink, href: href, target: "_blank" }, label));
@@ -121,6 +133,10 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             var value = max - this._currentTick * (ticksToNext + 1);
             return widget_1.tsx("progress", { class: CSS.countdownBar, value: value, max: max });
         };
+        WebMapShowcase.prototype._toggleCountdown = function () {
+            this._playing = !this._playing;
+            this.scheduleRender();
+        };
         __decorate([
             decorators_1.aliasOf("viewModel.view")
         ], WebMapShowcase.prototype, "view", void 0);
@@ -128,6 +144,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             decorators_1.property(),
             widget_1.renderable(["active"])
         ], WebMapShowcase.prototype, "viewModel", void 0);
+        __decorate([
+            widget_1.accessibleHandler()
+        ], WebMapShowcase.prototype, "_toggleCountdown", null);
         WebMapShowcase = __decorate([
             decorators_1.subclass("esri.widgets.WebMapShowcase")
         ], WebMapShowcase);
