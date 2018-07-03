@@ -39,18 +39,9 @@
   text-shadow: 2px 2px 4px #000;
 }
 
+.esri-webmap-showcase__item:focus .esri-webmap-showcase__item-control,
 .esri-webmap-showcase__item:hover .esri-webmap-showcase__item-control {
   display: block;
-}
-
-.esri-webmap-showcase__item--play:hover,
-.esri-webmap-showcase__item--play:focus {
-  background-image: play;
-}
-
-.esri-webmap-showcase__item--pause:hover,
-.esri-webmap-showcase__item--pause:focus {
-  background-image: play;
 }
 
 .esri-webmap-showcase__countdown-bar {
