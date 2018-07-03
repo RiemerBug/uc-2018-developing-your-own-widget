@@ -21,13 +21,13 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
     var CSS = {
         root: "esri-webmap-showcase",
         header: "esri-webmap-showcase__header",
-        details: "esri-webmap-showcase__details",
-        itemLink: "esri-webmap-showcase__item-link",
+        infoCard: "esri-webmap-showcase__info-card",
+        link: "esri-webmap-showcase__link",
         modifiedDate: "esri-webmap-showcase__modified-date",
         panel: "esri-webmap-showcase__panel",
-        item: "esri-webmap-showcase__item",
         itemControl: "esri-webmap-showcase__item-control",
-        image: "esri-webmap-showcase__image",
+        itemControlIcon: "esri-webmap-showcase__item-control-icon",
+        thumbnail: "esri-webmap-showcase__thumbnail",
         description: "esri-webmap-showcase__description",
         loader: "esri-webmap-showcase__loader",
         countdownBar: "esri-webmap-showcase__countdown-bar",
@@ -115,12 +115,12 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                 _a[CSS.esriIconPause] = _playing,
                 _a);
             var buttonText = _playing ? i18n.pause : i18n.play;
-            return (widget_1.tsx("div", { class: CSS.details },
-                widget_1.tsx("div", { class: CSS.item, bind: this, tabIndex: 0, role: "button", title: buttonText, "aria-label": buttonText, onclick: this._toggleCountdown, onkeydown: this._toggleCountdown },
-                    widget_1.tsx("span", { "aria-hidden": "true", class: this.classes(CSS.itemControl, iconClasses) }),
-                    widget_1.tsx("img", { alt: active.title, class: CSS.image, src: active.thumbnailUrl }),
-                    this.renderCountdown()),
-                widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderIconLink(active.title, active.portal.url + "/home/item.html?id=" + active.id)),
+            return (widget_1.tsx("div", { class: CSS.infoCard },
+                widget_1.tsx("div", { class: CSS.itemControl, bind: this, tabIndex: 0, role: "button", title: buttonText, "aria-label": buttonText, onclick: this._toggleCountdown, onkeydown: this._toggleCountdown },
+                    widget_1.tsx("span", { "aria-hidden": "true", class: this.classes(CSS.itemControlIcon, iconClasses) }),
+                    widget_1.tsx("img", { alt: active.title, class: CSS.thumbnail, src: active.thumbnailUrl }),
+                    this.renderCountdownBar()),
+                widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderLink(active)),
                 widget_1.tsx("div", { class: CSS.modifiedDate },
                     i18n.lastUpdated,
                     " ",
@@ -128,13 +128,14 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                 widget_1.tsx("div", { class: CSS.description, innerHTML: active.description })));
             var _a;
         };
-        WebMapShowcase.prototype.renderIconLink = function (label, href) {
-            return (widget_1.tsx("a", { class: CSS.itemLink, href: href, target: "_blank" }, label));
+        WebMapShowcase.prototype.renderLink = function (item) {
+            var itemDetailsURL = item.portal.url + "/home/item.html?id=" + item.id;
+            return (widget_1.tsx("a", { class: CSS.link, href: itemDetailsURL, target: "_blank" }, item.title));
         };
         WebMapShowcase.prototype.renderLoader = function () {
             return widget_1.tsx("div", { class: CSS.loader, key: "loader" });
         };
-        WebMapShowcase.prototype.renderCountdown = function () {
+        WebMapShowcase.prototype.renderCountdownBar = function () {
             var max = 100;
             var value = max - this._currentTick * (ticksToNext + 1);
             return widget_1.tsx("progress", { class: CSS.countdownBar, value: value, max: max });

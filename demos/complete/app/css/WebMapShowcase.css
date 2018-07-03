@@ -15,7 +15,7 @@
   flex-direction: column;
 }
 
-.esri-webmap-showcase__item {
+.esri-webmap-showcase__item-control {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
   cursor: pointer;
 }
 
-.esri-webmap-showcase__item-control {
+.esri-webmap-showcase__item-control-icon {
   display: none;
   position: absolute;
   top: 50%;
@@ -36,8 +36,8 @@
   text-shadow: 2px 2px 4px #000;
 }
 
-.esri-webmap-showcase__item:focus .esri-webmap-showcase__item-control,
-.esri-webmap-showcase__item:hover .esri-webmap-showcase__item-control {
+.esri-webmap-showcase__item-control:focus .esri-webmap-showcase__item-control-icon,
+.esri-webmap-showcase__item-control:hover .esri-webmap-showcase__item-control-icon {
   display: block;
 }
 
@@ -61,7 +61,7 @@
   background-color: #fff;
 }
 
-.esri-webmap-showcase__image {
+.esri-webmap-showcase__thumbnail {
   width: 100%;
 }
 
@@ -69,12 +69,12 @@
   margin: 10px 0 4px 0;
 }
 
-.esri-webmap-showcase__item-link {
+.esri-webmap-showcase__link {
   text-decoration: none;
 }
 
-.esri-webmap-showcase__item-link:focus,
-.esri-webmap-showcase__item-link:hover {
+.esri-webmap-showcase__link:focus,
+.esri-webmap-showcase__link:hover {
   text-decoration: underline;
 }
 
