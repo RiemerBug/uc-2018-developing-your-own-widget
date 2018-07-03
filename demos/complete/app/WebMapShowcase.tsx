@@ -2,16 +2,9 @@
 /// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
 
 import MapView = require("esri/views/MapView");
-import WebMap = require("esri/WebMap");
-
-import Portal = require("esri/portal/Portal");
-import PortalItem = require("esri/portal/PortalItem");
-import PortalQueryParams = require("esri/portal/PortalQueryParams");
-
-import i18n = require("dojo/i18n!./nls/WebMapShowcase");
 
 // esri.core.accessorSupport
-import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
+import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
 // esri.core
 import { once } from "esri/core/watchUtils";
@@ -21,11 +14,7 @@ import Widget = require("esri/widgets/Widget");
 
 // esri.widgets.support
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
-
-// todo: a11y testing
-// todo: should show pause/play button to stop automatically changing.
-
-// homework: should show pause/play button to stop automatically changing.
+import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
 
 const CSS = {
   root: "esri-webmap-showcase",
@@ -68,15 +57,13 @@ class WebMapShowcase extends declared(Widget) {
 
   postInitialize() {
     this.own([
-      once(this, "webMaps", () => {
-        this._next();
-
+      once(this, "viewModel.webMaps", () => {
         const intervalId = setInterval(() => {
           this._currentTick++;
 
           if (this._currentTick === ticksToNext) {
             this._currentTick = 0;
-            this._next();
+            this.viewModel.next();
           }
 
           this.own({
@@ -89,16 +76,6 @@ class WebMapShowcase extends declared(Widget) {
         }, tickRateInMs);
       })
     ]);
-
-    const { portal } = this;
-    const webMapsFromGroupQuery = `group:${
-      this.webMapGroupId
-    } AND type:"Web Map" AND -type:"Web Mapping Application"`;
-
-    portal
-      .load()
-      .then(() => portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })))
-      .then((queryResults) => this._set("webMaps", queryResults.results));
   }
 
   //--------------------------------------------------------------------------
@@ -115,18 +92,11 @@ class WebMapShowcase extends declared(Widget) {
   //
   //--------------------------------------------------------------------------
 
-  @property({ readOnly: true })
-  @renderable()
-  readonly active: PortalItem = null;
+  @aliasOf("viewModel.view") view: MapView = null;
 
-  @property() portal: Portal = Portal.getDefault();
-
-  @property() webMapGroupId: string = "a09a1595fd944f17a47a244e67d804f9";
-
-  @property({ readOnly: true })
-  readonly webMaps: PortalItem[] = null;
-
-  @property() view: MapView = null;
+  @property()
+  @renderable(["active"])
+  viewModel: WebMapShowcaseViewModel = new WebMapShowcaseViewModel();
 
   //--------------------------------------------------------------------------
   //
@@ -135,9 +105,11 @@ class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
+    const { active } = this.viewModel;
+
     return (
       <div class={this.classes(CSS.esriWidget, CSS.root)}>
-        {this.active ? this.renderContent() : this.renderLoader()}
+        {active ? this.renderContent() : this.renderLoader()}
       </div>
     );
   }
@@ -157,25 +129,22 @@ class WebMapShowcase extends declared(Widget) {
   }
 
   protected renderInfoCard() {
-    const portalItem: PortalItem = this.active;
+    const { active } = this.viewModel;
 
     return (
       <div class={CSS.details}>
         <div class={CSS.item}>
-          <img class={CSS.image} src={portalItem.thumbnailUrl} />
+          <img class={CSS.image} src={active.thumbnailUrl} />
           {this.renderCountdown()}
         </div>
 
         <h1 class={this.classes(CSS.esriHeader, CSS.header)}>
-          {this.renderIconLink(
-            portalItem.title,
-            `${portalItem.portal.url}/home/item.html?id=${portalItem.id}`
-          )}
+          {this.renderIconLink(active.title, `${active.portal.url}/home/item.html?id=${active.id}`)}
         </h1>
 
-        <div class={CSS.modifiedDate}>{portalItem.modified.toLocaleString()}</div>
+        <div class={CSS.modifiedDate}>{active.modified.toLocaleString()}</div>
 
-        <div class={CSS.description} innerHTML={portalItem.description} />
+        <div class={CSS.description} innerHTML={active.description} />
       </div>
     );
   }
@@ -197,32 +166,6 @@ class WebMapShowcase extends declared(Widget) {
     const value = max - this._currentTick * (ticksToNext + 1);
 
     return <progress class={CSS.countdownBar} value={value} max={max} />;
-  }
-
-  //--------------------------------------------------------------------------
-  //
-  //  Private Methods
-  //
-  //--------------------------------------------------------------------------
-
-  private _next(): void {
-    const { webMaps, view } = this;
-
-    let index = webMaps.indexOf(this.active) + 1;
-
-    if (index === webMaps.length) {
-      index = 0;
-    }
-
-    const portalItem = webMaps[index];
-
-    this._set("active", portalItem);
-
-    const webMap = new WebMap({ portalItem });
-
-    webMap.when(() => (view.viewpoint = webMap.initialViewProperties.viewpoint));
-
-    view.map = webMap as any;
   }
 }
 
