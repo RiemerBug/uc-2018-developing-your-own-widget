@@ -12,8 +12,6 @@ import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport
 import { once } from "esri/core/watchUtils";
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
-import PortalItem = __esri.PortalItem;
-
 const CSS = {
   root: "esri-webmap-showcase",
   header: "esri-webmap-showcase__header",
@@ -172,7 +170,7 @@ class WebMapShowcase extends declared(Widget) {
           {this.renderCountdownBar()}
         </div>
 
-        <h1 class={this.classes(CSS.esriHeader, CSS.header)}>{this.renderLink(active)}</h1>
+        <h1 class={this.classes(CSS.esriHeader, CSS.header)}>{this.renderLink()}</h1>
 
         <div class={CSS.modifiedDate}>
           {i18n.lastUpdated} {active.modified.toLocaleString()}
@@ -183,12 +181,13 @@ class WebMapShowcase extends declared(Widget) {
     );
   }
 
-  protected renderLink(item: PortalItem) {
-    const itemDetailsURL = `${item.portal.url}/home/item.html?id=${item.id}`;
+  protected renderLink() {
+    const { active } = this.viewModel;
+    const itemDetailsURL = `${active.portal.url}/home/item.html?id=${active.id}`;
 
     return (
       <a class={CSS.link} href={itemDetailsURL} target="_blank">
-        {item.title}
+        {active.title}
       </a>
     );
   }

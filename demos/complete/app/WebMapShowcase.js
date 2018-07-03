@@ -120,7 +120,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                     widget_1.tsx("span", { "aria-hidden": "true", class: this.classes(CSS.itemControlIcon, iconClasses) }),
                     widget_1.tsx("img", { alt: active.title, class: CSS.thumbnail, src: active.thumbnailUrl }),
                     this.renderCountdownBar()),
-                widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderLink(active)),
+                widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderLink()),
                 widget_1.tsx("div", { class: CSS.modifiedDate },
                     i18n.lastUpdated,
                     " ",
@@ -128,9 +128,10 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                 widget_1.tsx("div", { class: CSS.description, innerHTML: active.description })));
             var _a;
         };
-        WebMapShowcase.prototype.renderLink = function (item) {
-            var itemDetailsURL = item.portal.url + "/home/item.html?id=" + item.id;
-            return (widget_1.tsx("a", { class: CSS.link, href: itemDetailsURL, target: "_blank" }, item.title));
+        WebMapShowcase.prototype.renderLink = function () {
+            var active = this.viewModel.active;
+            var itemDetailsURL = active.portal.url + "/home/item.html?id=" + active.id;
+            return (widget_1.tsx("a", { class: CSS.link, href: itemDetailsURL, target: "_blank" }, active.title));
         };
         WebMapShowcase.prototype.renderLoader = function () {
             return widget_1.tsx("div", { class: CSS.loader, key: "loader" });
