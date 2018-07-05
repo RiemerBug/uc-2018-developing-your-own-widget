@@ -84,7 +84,13 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             var webMapsFromGroupQuery = "group:" + webMapGroupId + " AND type:\"Web Map\" AND -type:\"Web Mapping Application\"";
             return portal
                 .load()
-                .then(function () { return portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })); })
+                .then(function () {
+                return portal.queryItems(new PortalQueryParams({
+                    query: webMapsFromGroupQuery,
+                    sortField: "num-views",
+                    sortOrder: "desc"
+                }));
+            })
                 .then(function (queryResults) { return queryResults.results; });
         };
         WebMapShowcase.prototype._setActive = function (portalItem) {

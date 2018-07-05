@@ -106,7 +106,15 @@ class WebMapShowcase extends declared(Accessor) {
 
     return portal
       .load()
-      .then(() => portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })))
+      .then(() =>
+        portal.queryItems(
+          new PortalQueryParams({
+            query: webMapsFromGroupQuery,
+            sortField: "num-views",
+            sortOrder: "desc"
+          })
+        )
+      )
       .then((queryResults) => queryResults.results);
   }
 
