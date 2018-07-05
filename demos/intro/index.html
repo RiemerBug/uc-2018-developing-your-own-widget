@@ -1,9 +1,12 @@
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
-  <title>ArcGIS JSAPI TypeScript Demo</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>ArcGIS API for JavaScript: Developing Your Own Widget</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <link rel="stylesheet" href="./app/css/main.css">
   <style>
     html,
     body,
@@ -11,19 +14,17 @@
       padding: 0;
       margin: 0;
       height: 100%;
-      width: 100%;
     }
   </style>
-  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
-  <script>
-    var locationPath = location.pathname.replace(/\/[^\/]+$/, "");
-    window.dojoConfig = {
-      packages: [
-        {
-          name: "app",
-          location: locationPath + "/app"
-        }
-      ]
+  <script type="text/javascript">
+    var href = location.href;
+    var demoLocation = href.slice(0, href.lastIndexOf("/"));
+    var dojoConfig = {
+      // configure loader to load demo modules (non-CDN) from the correct location.
+      packages: [{
+        name: "demo",
+        location: demoLocation + '/app'
+      }]
     };
   </script>
   <script src="https://js.arcgis.com/4.8"></script>
@@ -31,7 +32,7 @@
 
 <body>
   <div id="viewDiv"></div>
-  <script>require(["app/main"]);</script>
+  <script>require(["demo"])</script>
 </body>
 
 </html>
