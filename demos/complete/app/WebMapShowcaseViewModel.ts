@@ -9,7 +9,6 @@ import PortalItem = require("esri/portal/PortalItem");
 import PortalQueryParams = require("esri/portal/PortalQueryParams");
 
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 import Accessor = require("esri/core/Accessor");
 
@@ -35,24 +34,17 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
   }
 
   initialize() {
-    this._setup = this.watch("view", () => {
-      const { portal, webMapGroupId } = this;
-      const webMapsFromGroupQuery = `group:${webMapGroupId} AND type:"Web Map" AND -type:"Web Mapping Application"`;
+    const { portal, webMapGroupId } = this;
+    const webMapsFromGroupQuery = `group:${webMapGroupId} AND type:"Web Map" AND -type:"Web Mapping Application"`;
 
-      portal
-        .load()
-        .then(() => portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })))
-        .then((queryResults) => {
-          const { results } = queryResults;
-          this._set("webMaps", results);
-          this._setActive(results[0]); // set first as active
-        });
-    });
-  }
-
-  destroy() {
-    this._setup.remove();
-    this._setup = null;
+    portal
+      .load()
+      .then(() => portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })))
+      .then((queryResults) => {
+        const { results } = queryResults;
+        this._set("webMaps", results);
+        this._setActive(results[0]); // set first as active
+      });
   }
 
   //--------------------------------------------------------------------------
@@ -70,7 +62,6 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
   //--------------------------------------------------------------------------
 
   @property({ readOnly: true })
-  @renderable()
   readonly active: PortalItem = null;
 
   @property() portal: Portal = Portal.getDefault();

@@ -16,7 +16,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/WebMap", "esri/portal/Portal", "esri/portal/PortalQueryParams", "esri/core/accessorSupport/decorators", "esri/widgets/support/widget", "esri/core/Accessor"], function (require, exports, __extends, __decorate, WebMap, Portal, PortalQueryParams, decorators_1, widget_1, Accessor) {
+define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/WebMap", "esri/portal/Portal", "esri/portal/PortalQueryParams", "esri/core/accessorSupport/decorators", "esri/core/Accessor"], function (require, exports, __extends, __decorate, WebMap, Portal, PortalQueryParams, decorators_1, Accessor) {
     "use strict";
     var WebMapShowcaseViewModel = /** @class */ (function (_super) {
         __extends(WebMapShowcaseViewModel, _super);
@@ -41,22 +41,16 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         }
         WebMapShowcaseViewModel.prototype.initialize = function () {
             var _this = this;
-            this._setup = this.watch("view", function () {
-                var _a = _this, portal = _a.portal, webMapGroupId = _a.webMapGroupId;
-                var webMapsFromGroupQuery = "group:" + webMapGroupId + " AND type:\"Web Map\" AND -type:\"Web Mapping Application\"";
-                portal
-                    .load()
-                    .then(function () { return portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })); })
-                    .then(function (queryResults) {
-                    var results = queryResults.results;
-                    _this._set("webMaps", results);
-                    _this._setActive(results[0]); // set first as active
-                });
+            var _a = this, portal = _a.portal, webMapGroupId = _a.webMapGroupId;
+            var webMapsFromGroupQuery = "group:" + webMapGroupId + " AND type:\"Web Map\" AND -type:\"Web Mapping Application\"";
+            portal
+                .load()
+                .then(function () { return portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })); })
+                .then(function (queryResults) {
+                var results = queryResults.results;
+                _this._set("webMaps", results);
+                _this._setActive(results[0]); // set first as active
             });
-        };
-        WebMapShowcaseViewModel.prototype.destroy = function () {
-            this._setup.remove();
-            this._setup = null;
         };
         //--------------------------------------------------------------------------
         //
@@ -84,8 +78,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             view.map = webMap;
         };
         __decorate([
-            decorators_1.property({ readOnly: true }),
-            widget_1.renderable()
+            decorators_1.property({ readOnly: true })
         ], WebMapShowcaseViewModel.prototype, "active", void 0);
         __decorate([
             decorators_1.property()
