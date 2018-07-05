@@ -19,5 +19,5 @@
     "node_modules/dojo-typings/dojox/1.11/modules.d.ts"
   ],
   "include": ["./demos/**/*", "./typings/*"],
-  "exclude": ["node_modules", "*-final.tsx?"]
+  "exclude": ["node_modules", "**/*-final.tsx", "**/*-final.ts"]
 }
