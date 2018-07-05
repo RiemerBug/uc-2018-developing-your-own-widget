@@ -7,7 +7,6 @@ import Widget = require("esri/widgets/Widget");
 import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
 
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { once } from "esri/core/watchUtils";
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 const CSS = {
@@ -32,9 +31,6 @@ const CSS = {
   esriIconPlay: "esri-icon-play",
   esriIconPause: "esri-icon-pause"
 };
-
-const ticksToNext = 10;
-const tickRateInMs = 1000;
 
 interface WebMapShowcaseProperties {
   view: MapView;
