@@ -54,6 +54,10 @@ tsc -w
 import EsriMap = require("esri/Map");
 import MapView = require("esri/views/MapView");
 
+//----------------
+//  map setup
+//----------------
+
 const map = new EsriMap({
   basemap: "streets-vector"
 });

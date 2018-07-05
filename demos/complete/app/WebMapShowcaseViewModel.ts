@@ -13,12 +13,10 @@ import { declared, property, subclass } from "esri/core/accessorSupport/decorato
 import Accessor = require("esri/core/Accessor");
 
 interface WebMapShowcaseViewModelProperties {
-  readonly active: PortalItem;
-  readonly webMaps: PortalItem[];
-
   view: MapView;
-  portal: Portal;
-  webMapGroupId: string;
+
+  portal?: Portal;
+  webMapGroupId?: string;
 }
 
 @subclass("esri.widgets.WebMapShowcaseViewModel")
@@ -49,27 +47,39 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
 
   //--------------------------------------------------------------------------
   //
-  //  Variables
-  //
-  //--------------------------------------------------------------------------
-
-  private _setup: IHandle;
-
-  //--------------------------------------------------------------------------
-  //
   //  Properties
   //
   //--------------------------------------------------------------------------
 
+  //----------------------------------
+  //  active
+  //----------------------------------
+
   @property({ readOnly: true })
   readonly active: PortalItem = null;
 
+  //----------------------------------
+  //  portal
+  //----------------------------------
+
   @property() portal: Portal = Portal.getDefault();
+
+  //----------------------------------
+  //  webMapGroupId
+  //----------------------------------
 
   @property() webMapGroupId: string = "a09a1595fd944f17a47a244e67d804f9";
 
+  //----------------------------------
+  //  webMaps
+  //----------------------------------
+
   @property({ readOnly: true })
   readonly webMaps: PortalItem[] = null;
+
+  //----------------------------------
+  //  view
+  //----------------------------------
 
   @property() view: MapView = null;
 
