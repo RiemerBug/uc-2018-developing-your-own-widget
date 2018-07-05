@@ -112,8 +112,8 @@ class WebMapShowcase extends declared(Widget) {
           bind={this}
           tabIndex={0}
           role="button"
-          onclick={this._toggle}
-          onkeydown={this._toggle}
+          onclick={this._toggleWebMap}
+          onkeydown={this._toggleWebMap}
         >
           <img alt={active.title} class={CSS.thumbnail} src={active.thumbnailUrl} />
         </div>
@@ -149,7 +149,7 @@ class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   @accessibleHandler()
-  private _toggle(): void {
+  private _toggleWebMap(): void {
     this.viewModel.next();
     this.scheduleRender();
   }
