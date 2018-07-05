@@ -107,7 +107,14 @@ class WebMapShowcase extends declared(Widget) {
 
     return (
       <div class={CSS.infoCard}>
-        <div class={CSS.itemControl}>
+        <div
+          class={CSS.itemControl}
+          bind={this}
+          tabIndex={0}
+          role="button"
+          onclick={this._toggle}
+          onkeydown={this._toggle}
+        >
           <img alt={active.title} class={CSS.thumbnail} src={active.thumbnailUrl} />
         </div>
 
@@ -140,6 +147,12 @@ class WebMapShowcase extends declared(Widget) {
   //  Private Methods
   //
   //--------------------------------------------------------------------------
+
+  @accessibleHandler()
+  private _toggle(): void {
+    this.viewModel.next();
+    this.scheduleRender();
+  }
 }
 
 export = WebMapShowcase;

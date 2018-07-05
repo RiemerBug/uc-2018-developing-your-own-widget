@@ -26,6 +26,6 @@ const view = new MapView({
 //  widget setup
 //----------------
 
-const widget = new WebMapShowcase();
+const widget = new WebMapShowcase({ view });
 
 view.ui.add(widget, "top-right");

@@ -18,7 +18,7 @@ define(["require", "exports", "esri/config", "esri/Map", "esri/views/MapView", "
     //----------------
     //  widget setup
     //----------------
-    var widget = new WebMapShowcase();
+    var widget = new WebMapShowcase({ view: view });
     view.ui.add(widget, "top-right");
 });
 //# sourceMappingURL=main.js.map

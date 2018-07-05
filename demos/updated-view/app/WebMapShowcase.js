@@ -83,7 +83,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         WebMapShowcase.prototype.renderInfoCard = function () {
             var active = this.viewModel.active;
             return (widget_1.tsx("div", { class: CSS.infoCard },
-                widget_1.tsx("div", { class: CSS.itemControl },
+                widget_1.tsx("div", { class: CSS.itemControl, bind: this, tabIndex: 0, role: "button", onclick: this._toggle, onkeydown: this._toggle },
                     widget_1.tsx("img", { alt: active.title, class: CSS.thumbnail, src: active.thumbnailUrl })),
                 widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderLink()),
                 widget_1.tsx("div", { class: CSS.modifiedDate },
@@ -99,6 +99,15 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         WebMapShowcase.prototype.renderLoader = function () {
             return widget_1.tsx("div", { class: CSS.loader, key: "loader" });
         };
+        //--------------------------------------------------------------------------
+        //
+        //  Private Methods
+        //
+        //--------------------------------------------------------------------------
+        WebMapShowcase.prototype._toggle = function () {
+            this.viewModel.next();
+            this.scheduleRender();
+        };
         __decorate([
             decorators_1.aliasOf("viewModel.view")
         ], WebMapShowcase.prototype, "view", void 0);
@@ -106,6 +115,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             decorators_1.property(),
             widget_1.renderable(["active"])
         ], WebMapShowcase.prototype, "viewModel", void 0);
+        __decorate([
+            widget_1.accessibleHandler()
+        ], WebMapShowcase.prototype, "_toggle", null);
         WebMapShowcase = __decorate([
             decorators_1.subclass("esri.widgets.WebMapShowcase")
         ], WebMapShowcase);
