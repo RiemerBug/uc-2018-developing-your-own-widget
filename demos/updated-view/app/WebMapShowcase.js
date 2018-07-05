@@ -37,8 +37,6 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         esriIconPlay: "esri-icon-play",
         esriIconPause: "esri-icon-pause"
     };
-    var ticksToNext = 10;
-    var tickRateInMs = 1000;
     var WebMapShowcase = /** @class */ (function (_super) {
         __extends(WebMapShowcase, _super);
         //--------------------------------------------------------------------------
@@ -83,7 +81,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         WebMapShowcase.prototype.renderInfoCard = function () {
             var active = this.viewModel.active;
             return (widget_1.tsx("div", { class: CSS.infoCard },
-                widget_1.tsx("div", { class: CSS.itemControl, bind: this, tabIndex: 0, role: "button", onclick: this._toggle, onkeydown: this._toggle },
+                widget_1.tsx("div", { class: CSS.itemControl, bind: this, tabIndex: 0, role: "button", onclick: this._toggleWebMap, onkeydown: this._toggleWebMap },
                     widget_1.tsx("img", { alt: active.title, class: CSS.thumbnail, src: active.thumbnailUrl })),
                 widget_1.tsx("h1", { class: this.classes(CSS.esriHeader, CSS.header) }, this.renderLink()),
                 widget_1.tsx("div", { class: CSS.modifiedDate },
@@ -104,7 +102,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //  Private Methods
         //
         //--------------------------------------------------------------------------
-        WebMapShowcase.prototype._toggle = function () {
+        WebMapShowcase.prototype._toggleWebMap = function () {
             this.viewModel.next();
             this.scheduleRender();
         };
@@ -117,7 +115,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         ], WebMapShowcase.prototype, "viewModel", void 0);
         __decorate([
             widget_1.accessibleHandler()
-        ], WebMapShowcase.prototype, "_toggle", null);
+        ], WebMapShowcase.prototype, "_toggleWebMap", null);
         WebMapShowcase = __decorate([
             decorators_1.subclass("esri.widgets.WebMapShowcase")
         ], WebMapShowcase);
