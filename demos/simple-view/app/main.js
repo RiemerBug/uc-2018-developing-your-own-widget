@@ -1,4 +1,4 @@
-define(["require", "exports", "esri/config", "esri/WebMap", "esri/views/MapView", "./WebMapShowcase"], function (require, exports, config, WebMap, MapView, WebMapShowcase) {
+define(["require", "exports", "esri/config", "esri/Map", "esri/views/MapView", "./WebMapShowcase"], function (require, exports, config, Map, MapView, WebMapShowcase) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     // disable prompting
@@ -6,12 +6,15 @@ define(["require", "exports", "esri/config", "esri/WebMap", "esri/views/MapView"
     //----------------
     //  map setup
     //----------------
-    var map = new WebMap({
-        portalItem: {
-            id: "aa1f66346ab24b37a2b544f8a94529d2"
-        }
+    var map = new Map({
+        basemap: "streets-vector"
     });
-    var view = new MapView({ container: "view", map: map });
+    var view = new MapView({
+        map: map,
+        container: "viewDiv",
+        center: [-117.1628487109789, 32.706813240831096],
+        zoom: 15
+    });
     //----------------
     //  widget setup
     //----------------

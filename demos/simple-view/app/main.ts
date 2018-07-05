@@ -1,5 +1,5 @@
 import config = require("esri/config");
-import WebMap = require("esri/WebMap");
+import Map = require("esri/Map");
 import MapView = require("esri/views/MapView");
 
 import WebMapShowcase = require("./WebMapShowcase");
@@ -11,13 +11,16 @@ config.request.useIdentity = false;
 //  map setup
 //----------------
 
-const map = new WebMap({
-  portalItem: {
-    id: "aa1f66346ab24b37a2b544f8a94529d2"
-  }
+const map = new Map({
+  basemap: "streets-vector"
 });
 
-const view = new MapView({ container: "view", map });
+const view = new MapView({
+  map,
+  container: "viewDiv",
+  center: [-117.1628487109789, 32.706813240831096],
+  zoom: 15
+});
 
 //----------------
 //  widget setup

@@ -10,7 +10,7 @@ config.request.useIdentity = false;
 //  map setup
 //----------------
 
-const view = new MapView({ container: "view" });
+const view = new MapView({ container: "viewDiv" });
 
 //----------------
 //  widget setup

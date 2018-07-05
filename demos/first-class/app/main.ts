@@ -12,7 +12,7 @@ const map = new EsriMap({
 });
 
 const view = new MapView({
-  map: map,
+  map,
   container: "viewDiv",
   center: [-117.1628487109789, 32.706813240831096],
   zoom: 15

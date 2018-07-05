@@ -6,7 +6,7 @@ define(["require", "exports", "esri/config", "esri/views/MapView", "./WebMapShow
     //----------------
     //  map setup
     //----------------
-    var view = new MapView({ container: "view" });
+    var view = new MapView({ container: "viewDiv" });
     //----------------
     //  widget setup
     //----------------
