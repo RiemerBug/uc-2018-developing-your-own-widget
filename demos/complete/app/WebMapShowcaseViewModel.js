@@ -56,15 +56,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         }
         WebMapShowcaseViewModel.prototype.initialize = function () {
             var _this = this;
-            var _a = this, portal = _a.portal, webMapGroupId = _a.webMapGroupId;
-            var webMapsFromGroupQuery = "group:" + webMapGroupId + " AND type:\"Web Map\" AND -type:\"Web Mapping Application\"";
-            portal
-                .load()
-                .then(function () { return portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })); })
-                .then(function (queryResults) {
-                var results = queryResults.results;
-                _this._set("webMaps", results);
-                _this._setActive(results[0]); // set first as active
+            this._fetchWebMaps().then(function (webMaps) {
+                _this._set("webMaps", webMaps);
+                _this._setActive(webMaps[0]); // set first as active
             });
         };
         //--------------------------------------------------------------------------
@@ -85,6 +79,14 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //  Private Methods
         //
         //--------------------------------------------------------------------------
+        WebMapShowcaseViewModel.prototype._fetchWebMaps = function () {
+            var _a = this, portal = _a.portal, webMapGroupId = _a.webMapGroupId;
+            var webMapsFromGroupQuery = "group:" + webMapGroupId + " AND type:\"Web Map\" AND -type:\"Web Mapping Application\"";
+            return portal
+                .load()
+                .then(function () { return portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })); })
+                .then(function (queryResults) { return queryResults.results; });
+        };
         WebMapShowcaseViewModel.prototype._setActive = function (portalItem) {
             var view = this.view;
             this._set("active", portalItem);

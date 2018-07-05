@@ -56,10 +56,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         }
         WebMapShowcase.prototype.initialize = function () {
             var _this = this;
-            this._fetchWebMaps()
-                .then(function (results) {
-                _this._set("webMaps", results);
-                _this._setActive(results[0]); // set first as `active`
+            this._fetchWebMaps().then(function (webMaps) {
+                _this._set("webMaps", webMaps);
+                _this._setActive(webMaps[0]); // set first as `active`
             });
         };
         //--------------------------------------------------------------------------

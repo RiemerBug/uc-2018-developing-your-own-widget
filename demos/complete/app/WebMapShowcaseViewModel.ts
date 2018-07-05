@@ -32,17 +32,10 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
   }
 
   initialize() {
-    const { portal, webMapGroupId } = this;
-    const webMapsFromGroupQuery = `group:${webMapGroupId} AND type:"Web Map" AND -type:"Web Mapping Application"`;
-
-    portal
-      .load()
-      .then(() => portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })))
-      .then((queryResults) => {
-        const { results } = queryResults;
-        this._set("webMaps", results);
-        this._setActive(results[0]); // set first as active
-      });
+    this._fetchWebMaps().then((webMaps) => {
+      this._set("webMaps", webMaps);
+      this._setActive(webMaps[0]); // set first as active
+    });
   }
 
   //--------------------------------------------------------------------------
@@ -106,6 +99,16 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
   //  Private Methods
   //
   //--------------------------------------------------------------------------
+
+  private _fetchWebMaps(): IPromise<PortalItem[]> {
+    const { portal, webMapGroupId } = this;
+    const webMapsFromGroupQuery = `group:${webMapGroupId} AND type:"Web Map" AND -type:"Web Mapping Application"`;
+
+    return portal
+      .load()
+      .then(() => portal.queryItems(new PortalQueryParams({ query: webMapsFromGroupQuery })))
+      .then((queryResults) => queryResults.results);
+  }
 
   private _setActive(portalItem: PortalItem): void {
     const { view } = this;
