@@ -2,6 +2,16 @@
 
 Use a single widget and keep enhancing it @ each section
 
+Section Outline
+
+- Intro/Setup (Franco)
+- Simple View (Matt)
+- Simple ViewModel ... viewModel with just one webmap set to `active` property?
+- Enhance View to use one webmap
+- Enhance ViewModel to paginate webmaps & have next method
+- Enhance View to final. Add NLS
+- Completed
+
 ## Section I
 
 - Dev environment setup (focus: walkthrough widget dev from scratch)
