@@ -1,4 +1,4 @@
-import EsriMap = require("esri/Map");
+import Map = require("esri/Map");
 import MapView = require("esri/views/MapView");
 
 import WebMapShowcase = require("./WebMapShowcase");
@@ -7,7 +7,7 @@ import WebMapShowcase = require("./WebMapShowcase");
 //  map setup
 //----------------
 
-const map = new EsriMap({
+const map = new Map({
   basemap: "streets-vector"
 });
 

@@ -1,10 +1,10 @@
-define(["require", "exports", "esri/Map", "esri/views/MapView", "./WebMapShowcase"], function (require, exports, EsriMap, MapView, WebMapShowcase) {
+define(["require", "exports", "esri/Map", "esri/views/MapView", "./WebMapShowcase"], function (require, exports, Map, MapView, WebMapShowcase) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     //----------------
     //  map setup
     //----------------
-    var map = new EsriMap({
+    var map = new Map({
         basemap: "streets-vector"
     });
     var view = new MapView({
