@@ -18,7 +18,7 @@ interface WebMapShowcaseProperties {
   webMapGroupId?: string;
 }
 
-@subclass("demo.CustomClass")
+@subclass("esri.demo.CustomClass")
 class CustomClass extends declared(Accessor) {
   //--------------------------------------------------------------------------
   //
