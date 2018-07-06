@@ -19,8 +19,8 @@ interface WebMapShowcaseProperties {
   webMapGroupId?: string;
 }
 
-@subclass("esri.widgets.WebMapShowcase")
-class WebMapShowcase extends declared(Accessor) {
+@subclass("demo.CustomClass")
+class CustomClass extends declared(Accessor) {
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
@@ -131,4 +131,4 @@ class WebMapShowcase extends declared(Accessor) {
   }
 }
 
-export = WebMapShowcase;
+export = CustomClass;
