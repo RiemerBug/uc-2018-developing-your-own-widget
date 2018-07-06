@@ -6,10 +6,7 @@ import Widget = require("esri/widgets/Widget");
 
 import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
 
-import i18n = require("dojo/i18n!./nls/WebMapShowcase");
-
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { once } from "esri/core/watchUtils";
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 const CSS = {
@@ -35,9 +32,6 @@ const CSS = {
   esriIconPause: "esri-icon-pause"
 };
 
-const ticksToNext = 10;
-const tickRateInMs = 1000;
-
 interface WebMapShowcaseProperties {
   view: MapView;
 }
@@ -53,43 +47,6 @@ class WebMapShowcase extends declared(Widget) {
   constructor(props: WebMapShowcaseProperties) {
     super();
   }
-
-  postInitialize() {
-    this.own(
-      once(this, "viewModel.webMaps", () => {
-        this._playing = true;
-
-        const intervalId = setInterval(() => {
-          if (!this._playing) {
-            return;
-          }
-
-          this._currentTick++;
-
-          if (this._currentTick === ticksToNext) {
-            this._currentTick = 0;
-            this.viewModel.next();
-          }
-
-          this.own({
-            remove: () => clearInterval(intervalId)
-          });
-
-          this.scheduleRender();
-        }, tickRateInMs);
-      })
-    );
-  }
-
-  //--------------------------------------------------------------------------
-  //
-  //  Variables
-  //
-  //--------------------------------------------------------------------------
-
-  private _currentTick: number = 0;
-
-  private _playing: boolean = false;
 
   //--------------------------------------------------------------------------
   //
@@ -144,15 +101,6 @@ class WebMapShowcase extends declared(Widget) {
   protected renderInfoCard() {
     const { active } = this.viewModel;
 
-    const { _playing } = this;
-
-    const iconClasses = {
-      [CSS.esriIconPlay]: !_playing,
-      [CSS.esriIconPause]: _playing
-    };
-
-    const buttonText = _playing ? i18n.pause : i18n.play;
-
     return (
       <div class={CSS.infoCard}>
         <div
@@ -160,21 +108,15 @@ class WebMapShowcase extends declared(Widget) {
           bind={this}
           tabIndex={0}
           role="button"
-          title={buttonText}
-          aria-label={buttonText}
-          onclick={this._toggleCountdown}
-          onkeydown={this._toggleCountdown}
+          onclick={this._toggleWebMap}
+          onkeydown={this._toggleWebMap}
         >
-          <span aria-hidden="true" class={this.classes(CSS.itemControlIcon, iconClasses)} />
           <img alt={active.title} class={CSS.thumbnail} src={active.thumbnailUrl} />
-          {this.renderCountdownBar()}
         </div>
 
         <h1 class={this.classes(CSS.esriHeader, CSS.header)}>{this.renderLink()}</h1>
 
-        <div class={CSS.modifiedDate}>
-          {i18n.lastUpdated} {active.modified.toLocaleString()}
-        </div>
+        <div class={CSS.modifiedDate}>Last updated {active.modified.toLocaleString()}</div>
 
         <div class={CSS.description} innerHTML={active.description} />
       </div>
@@ -196,13 +138,6 @@ class WebMapShowcase extends declared(Widget) {
     return <div class={CSS.loader} key="loader" />;
   }
 
-  protected renderCountdownBar() {
-    const max = 100;
-    const value = max - this._currentTick * (ticksToNext + 1);
-
-    return <progress class={CSS.countdownBar} value={value} max={max} />;
-  }
-
   //--------------------------------------------------------------------------
   //
   //  Private Methods
@@ -210,8 +145,8 @@ class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   @accessibleHandler()
-  private _toggleCountdown(): void {
-    this._playing = !this._playing;
+  private _toggleWebMap(): void {
+    this.viewModel.next();
     this.scheduleRender();
   }
 }
