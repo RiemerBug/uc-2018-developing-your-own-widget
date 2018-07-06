@@ -128,29 +128,29 @@ interface CustomClass {
 
 # `esri/widgets/Widget`
 
-- Lifecycle <!-- .element: class="fragment" data-fragment-index="1" -->
-- API consistency <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Unified object constructor <!-- .element: class="fragment" data-fragment-index="3" -->
-  - Properties <!-- .element: class="fragment" data-fragment-index="4" -->
-  - Watching <!-- .element: class="fragment" data-fragment-index="5" -->
+- Lifecycle
+- API consistency
+  - Unified object constructor
+  - Properties
+  - Watching
 
 ---
 
 # Lifecycle
 
-- <!-- .element: class="fragment" data-fragment-index="1" --> `constructor`
-- <!-- .element: class="fragment" data-fragment-index="2" --> `postInitialize`
-- <!-- .element: class="fragment" data-fragment-index="3" --> `render`
-- <!-- .element: class="fragment" data-fragment-index="4" --> `destroy`
+- `constructor`
+- `postInitialize`
+- `render`
+- `destroy`
 
 ---
 
 # `render`
 
-- Defines UI <!-- .element: class="fragment" data-fragment-index="1" -->
-- Reacts to state <!-- .element: class="fragment" data-fragment-index="2" -->
-- Uses JSX <!-- .element: class="fragment" data-fragment-index="3" -->
-- VDOM <!-- .element: class="fragment" data-fragment-index="4" -->
+- Defines UI
+- Reacts to state
+- Uses JSX
+- VDOM
 
 ---
 
@@ -175,7 +175,7 @@ render() {
 
 # Demo: Simple View
 
-- Write simple widget that renders "Hello World"
+Write simple widget that renders "Hello World"
 
 ---
 
@@ -241,7 +241,7 @@ render() {
 # Demo Recap: Update View
 
 - Paired view and viewmodel
-- Rendered property from view model
+- Rendered property from viewmodel
 - Wired up interactivity
 - Learned to apply styles
 - Dynamically rendered UI based on a property value
