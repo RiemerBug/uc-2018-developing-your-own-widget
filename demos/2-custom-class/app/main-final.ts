@@ -1,7 +1,7 @@
 import Map = require("esri/Map");
 import MapView = require("esri/views/MapView");
 
-import WebMapShowcase = require("./CustomClass");
+import CustomClass = require("./CustomClass");
 
 //----------------
 //  map setup
@@ -22,7 +22,7 @@ const view = new MapView({
 //  Custom Class setup
 //----------------
 
-const showcase = new CustomClass({ view });
+const customClass = new CustomClass({ view });
 
 // show next webmap every 10 seconds
-setInterval(() => showcase.next(), 10000);
+setInterval(() => customClass.next(), 10000);
