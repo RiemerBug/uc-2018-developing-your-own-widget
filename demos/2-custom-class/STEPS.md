@@ -10,12 +10,12 @@
   
   import Accessor = require("esri/core/Accessor");
   
-  @subclass("esri.demo.WebMapShowcase")
-  class WebMapShowcase extends declared(Accessor) {
+  @subclass("esri.demo.CustomClass")
+  class CustomClass extends declared(Accessor) {
   
   }
   
-  export = WebMapShowcase;
+  export = CustomClass;
   ```
 
   This is the minimum required to create a class in 4x. All we're doing here is creating a class that extends `esri/core/Accessor`, which is the base of all 4x classes.
@@ -77,7 +77,7 @@
   We can leverage TypeScript and type the constructor argument to ensure our class is created with the correct properties. We'll define an interface for these properties
 
   ```tsx
-  interface WebMapShowcaseProperties {
+  interface CustomClassProperties {
     view: MapView;
   
     portal?: Portal;
@@ -94,14 +94,14 @@
   //
   //--------------------------------------------------------------------------
 
-  constructor(props?: WebMapShowcaseProperties) {
+  constructor(props?: CustomClassProperties) {
     super();
   }
   ```
 
   We've now implemented the properties from our design. Properties defined this way can be watched for changes and initialized by a constructor object.
 
-1. Let's update the class to fetch the webmaps and populate when initialized.
+1. Let's update the class to fetch the webmaps and populate when initialized by `Accessor`'s lifecycle.
 
   ```tsx
   initialize() {
