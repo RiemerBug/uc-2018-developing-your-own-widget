@@ -78,4 +78,4 @@ view.ui.add(widget, "top-right");
 
 ## Complete
 
-We're done with this step! Compile, view, and proceed to the [next steps](../4-updated-view/STEPS.md).
+We're done with this set of steps! Compile, view, and proceed to the [next steps](../4-updated-view/STEPS.md).

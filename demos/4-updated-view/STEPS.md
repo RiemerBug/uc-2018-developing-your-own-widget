@@ -245,3 +245,5 @@ add `accessibleHandler` widget decorator to private method we added
 ```
 
 ## Complete
+
+We're done with this set of steps! Compile, view, and proceed to the [next steps](../5-final-view/STEPS.md).
