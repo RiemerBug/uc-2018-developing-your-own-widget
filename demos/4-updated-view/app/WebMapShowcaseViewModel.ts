@@ -6,7 +6,6 @@ import WebMap = require("esri/WebMap");
 
 import Portal = require("esri/portal/Portal");
 import PortalItem = require("esri/portal/PortalItem");
-import PortalQueryParams = require("esri/portal/PortalQueryParams");
 
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
@@ -107,13 +106,11 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
     return portal
       .load()
       .then(() =>
-        portal.queryItems(
-          new PortalQueryParams({
-            query: webMapsFromGroupQuery,
-            sortField: "num-views",
-            sortOrder: "desc"
-          })
-        )
+        portal.queryItems({
+          query: webMapsFromGroupQuery,
+          sortField: "num-views",
+          sortOrder: "desc"
+        })
       )
       .then((queryResults) => queryResults.results);
   }
