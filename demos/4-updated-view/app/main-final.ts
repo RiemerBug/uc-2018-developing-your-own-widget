@@ -1,9 +1,11 @@
+import config = require("esri/config");
 import Map = require("esri/Map");
 import MapView = require("esri/views/MapView");
 
-import CustomClass = require("./CustomClass");
-
 import WebMapShowcase = require("./WebMapShowcase");
+
+// disable prompting
+config.request.useIdentity = false;
 
 //----------------
 //  map setup
@@ -21,18 +23,9 @@ const view = new MapView({
 });
 
 //----------------
-//  Custom Class setup
-//----------------
-
-const customClass = new CustomClass({ view });
-
-// show next webmap every 10 seconds
-setInterval(() => customClass.next(), 10000);
-
-//----------------
 //  widget setup
 //----------------
 
-const widget = new WebMapShowcase();
+const widget = new WebMapShowcase({ view });
 
 view.ui.add(widget, "top-right");
