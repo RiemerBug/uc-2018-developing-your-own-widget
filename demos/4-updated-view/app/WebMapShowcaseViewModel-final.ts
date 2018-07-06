@@ -6,20 +6,19 @@ import WebMap = require("esri/WebMap");
 
 import Portal = require("esri/portal/Portal");
 import PortalItem = require("esri/portal/PortalItem");
-import PortalQueryParams = require("esri/portal/PortalQueryParams");
 
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
 import Accessor = require("esri/core/Accessor");
 
-interface WebMapShowcaseViewModelProperties {
+interface WebMapShowcaseProperties {
   view: MapView;
 
   portal?: Portal;
   webMapGroupId?: string;
 }
 
-@subclass("esri.widgets.WebMapShowcaseViewModel")
+@subclass("esri.demo.WebMapShowcaseViewModel")
 class WebMapShowcaseViewModel extends declared(Accessor) {
   //--------------------------------------------------------------------------
   //
@@ -27,14 +26,14 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
   //
   //--------------------------------------------------------------------------
 
-  constructor(props?: WebMapShowcaseViewModelProperties) {
+  constructor(props?: WebMapShowcaseProperties) {
     super();
   }
 
   initialize() {
     this._fetchWebMaps().then((webMaps) => {
       this._set("webMaps", webMaps);
-      this._setActive(webMaps[0]); // set first as active
+      this._setActive(webMaps[0]); // set first as `active`
     });
   }
 
@@ -107,13 +106,11 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
     return portal
       .load()
       .then(() =>
-        portal.queryItems(
-          new PortalQueryParams({
-            query: webMapsFromGroupQuery,
-            sortField: "num-views",
-            sortOrder: "desc"
-          })
-        )
+        portal.queryItems({
+          query: webMapsFromGroupQuery,
+          sortField: "num-views",
+          sortOrder: "desc"
+        })
       )
       .then((queryResults) => queryResults.results);
   }

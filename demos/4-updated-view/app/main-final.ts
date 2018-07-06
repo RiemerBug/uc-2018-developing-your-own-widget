@@ -1,11 +1,7 @@
-import config = require("esri/config");
 import Map = require("esri/Map");
 import MapView = require("esri/views/MapView");
 
 import WebMapShowcase = require("./WebMapShowcase");
-
-// disable prompting
-config.request.useIdentity = false;
 
 //----------------
 //  map setup
