@@ -12,7 +12,7 @@ import Widget = require("esri/widgets/Widget");
 
 import { declared, subclass } from "esri/core/accessorSupport/decorators";
 
-@subclass("esri.widgets.WebMapShowcase")
+@subclass("esri.demo.WebMapShowcase")
 class WebMapShowcase extends declared(Widget) {}
 
 export = WebMapShowcase;

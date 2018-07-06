@@ -36,7 +36,7 @@ interface WebMapShowcaseProperties {
   view: MapView;
 }
 
-@subclass("esri.widgets.WebMapShowcase")
+@subclass("esri.demo.WebMapShowcase")
 class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
   //

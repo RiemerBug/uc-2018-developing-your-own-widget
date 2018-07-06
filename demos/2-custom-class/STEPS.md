@@ -10,7 +10,7 @@
   
   import Accessor = require("esri/core/Accessor");
   
-  @subclass("esri.widgets.WebMapShowcase")
+  @subclass("esri.demo.WebMapShowcase")
   class WebMapShowcase extends declared(Accessor) {
   
   }

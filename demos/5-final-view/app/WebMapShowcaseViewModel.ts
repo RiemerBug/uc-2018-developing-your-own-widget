@@ -19,7 +19,7 @@ interface WebMapShowcaseViewModelProperties {
   webMapGroupId?: string;
 }
 
-@subclass("esri.widgets.WebMapShowcaseViewModel")
+@subclass("esri.demo.WebMapShowcaseViewModel")
 class WebMapShowcaseViewModel extends declared(Accessor) {
   //--------------------------------------------------------------------------
   //

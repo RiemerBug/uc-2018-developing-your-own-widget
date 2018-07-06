@@ -116,7 +116,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             decorators_1.property()
         ], WebMapShowcaseViewModel.prototype, "view", void 0);
         WebMapShowcaseViewModel = __decorate([
-            decorators_1.subclass("esri.widgets.WebMapShowcaseViewModel")
+            decorators_1.subclass("esri.demo.WebMapShowcaseViewModel")
         ], WebMapShowcaseViewModel);
         return WebMapShowcaseViewModel;
     }(decorators_1.declared(Accessor)));
