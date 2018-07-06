@@ -6,11 +6,10 @@ import Widget = require("esri/widgets/Widget");
 
 import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
 
-import i18n = require("dojo/i18n!./nls/WebMapShowcase");
-
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
-import { once } from "esri/core/watchUtils";
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
+
+import { once } from "esri/core/watchUtils";
 
 const CSS = {
   root: "esri-webmap-showcase",
@@ -35,14 +34,14 @@ const CSS = {
   esriIconPause: "esri-icon-pause"
 };
 
-const ticksToNext = 10;
-const tickRateInMs = 1000;
-
 interface WebMapShowcaseProperties {
   view: MapView;
 }
 
-@subclass("esri.widgets.WebMapShowcase")
+const ticksToNext = 10;
+const tickRateInMs = 1000;
+
+@subclass("esri.demo.WebMapShowcase")
 class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
   //
@@ -151,7 +150,7 @@ class WebMapShowcase extends declared(Widget) {
       [CSS.esriIconPause]: _playing
     };
 
-    const buttonText = _playing ? i18n.pause : i18n.play;
+    const buttonText = _playing ? "Pause" : "Play";
 
     return (
       <div class={CSS.infoCard}>
@@ -172,9 +171,7 @@ class WebMapShowcase extends declared(Widget) {
 
         <h1 class={this.classes(CSS.esriHeader, CSS.header)}>{this.renderLink()}</h1>
 
-        <div class={CSS.modifiedDate}>
-          {i18n.lastUpdated} {active.modified.toLocaleString()}
-        </div>
+        <div class={CSS.modifiedDate}>Last updated {active.modified.toLocaleString()}</div>
 
         <div class={CSS.description} innerHTML={active.description} />
       </div>
