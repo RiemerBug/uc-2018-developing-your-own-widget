@@ -112,7 +112,7 @@ interface CustomClass {
 
 ---
 
-# Widgets
+# About Widgets
 
 - What? <!-- .element: class="fragment" data-fragment-index="1" -->
   - Encapsulated UI components
@@ -173,7 +173,7 @@ render() {
 
 ---
 
-# Demo: Simple View
+# Demo: [Simple View](../demos/3-simple-view/)
 
 Write simple widget that renders "Hello World"
 
@@ -229,7 +229,7 @@ Write simple widget that renders "Hello World"
 
 ---
 
-# Demo: Update View
+# Demo: [Updated View](../demos/4-updated-view/)
 
 - Enhance `WebMapShowCase` to use `CustomClass` as a view model
 - Render details from the active webmap portal item
