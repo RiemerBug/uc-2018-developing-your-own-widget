@@ -248,6 +248,8 @@ render() {
 
 ---
 
+<!-- Presenter: Franco -->
+
 # Going Further
 
 <!-- .slide: data-background="img/bg-4.png" data-background-size="cover" -->
