@@ -2,6 +2,8 @@ import config = require("esri/config");
 import Map = require("esri/Map");
 import MapView = require("esri/views/MapView");
 
+import WebMapShowcase = require("./WebMapShowcase");
+
 // disable prompting
 config.request.useIdentity = false;
 
@@ -19,3 +21,11 @@ const view = new MapView({
   center: [-117.1628487109789, 32.706813240831096],
   zoom: 15
 });
+
+//----------------
+//  widget setup
+//----------------
+
+const widget = new WebMapShowcase();
+
+view.ui.add(widget, "top-right");
