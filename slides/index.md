@@ -48,14 +48,14 @@ JS API + TypeScript
 
 # Demo: Dev Environment
 
-- Install TypeScript + JS API typings
+- Install TypeScript + JS API
 
 ---
 
 # Demo Recap: Dev Environment
 
 - JS API ❤️️ TypeScript
-- Used TypeScript to build a simple application
+- Built mapping application
 
 ---
 
@@ -67,7 +67,7 @@ JS API + TypeScript
 
 # `esri/core/Accessor`
 
-- JS API Foundation
+- JS API foundation
 - Consistent developer experience
 
 ---
@@ -99,9 +99,8 @@ interface CustomClass {
 # Demo Recap: Development Setup
 
 - Implemented `CustomClass`
-  - properties
-  - methods
-- Used TypeScript to ensure correctness
+  - Properties + methods
+  - TypeScript
 
 ---
 
@@ -182,7 +181,7 @@ Write simple widget that renders "Hello World"
 # Demo Recap: Simple View
 
 - Extended `esri/widgets/Widget`
-- Implemented `render` to render text
+- Implemented `render()`
 
 ---
 
