@@ -3,9 +3,9 @@
 
 import Widget = require("esri/widgets/Widget");
 
-import { declared, subclass } from "esri/core/accessorSupport/decorators";
+import { property, declared, subclass } from "esri/core/accessorSupport/decorators";
 
-import { tsx } from "esri/widgets/support/widget";
+import { renderable, tsx } from "esri/widgets/support/widget";
 
 @subclass("esri.demo.WebMapShowcase")
 class WebMapShowcase extends declared(Widget) {

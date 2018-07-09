@@ -80,16 +80,10 @@ Add Widget Properties
 viewModel: WebMapShowcaseViewModel = new WebMapShowcaseViewModel();
 ```
 
-Import `aliasOf` & `property` from accessor decorators
+Import `aliasOf` from accessor decorators
 
 ```ts
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
-```
-
-Import `renderable` from widget decorators
-
-```ts
-import { renderable, tsx } from "esri/widgets/support/widget";
 ```
 
 Import MapView
