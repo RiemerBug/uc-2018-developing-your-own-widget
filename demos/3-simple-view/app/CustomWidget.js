@@ -66,7 +66,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             widget_1.renderable()
         ], CustomWidget.prototype, "enabled", void 0);
         CustomWidget = __decorate([
-            decorators_1.subclass("esri.demo.WebMapShowcase")
+            decorators_1.subclass("esri.demo.CustomWidget")
         ], CustomWidget);
         return CustomWidget;
     }(decorators_1.declared(Widget)));

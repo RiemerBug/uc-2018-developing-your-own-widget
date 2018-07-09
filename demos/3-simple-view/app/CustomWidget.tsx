@@ -12,7 +12,7 @@ const CSS = {
   enabled: "custom-widget--enabled"
 };
 
-@subclass("esri.demo.WebMapShowcase")
+@subclass("esri.demo.CustomWidget")
 class CustomWidget extends declared(Widget) {
   //--------------------------------------------------------------------------
   //
