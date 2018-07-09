@@ -3,11 +3,16 @@
 
 import Widget = require("esri/widgets/Widget");
 
-import { declared, subclass } from "esri/core/accessorSupport/decorators";
+import { property, declared, subclass } from "esri/core/accessorSupport/decorators";
 
-import { tsx } from "esri/widgets/support/widget";
+import { renderable, tsx } from "esri/widgets/support/widget";
 
-@subclass("esri.demo.WebMapShowcase")
+const CSS = {
+  base: "custom-widget",
+  enabled: "custom-widget--enabled"
+};
+
+@subclass("esri.demo.CustomWidget")
 class CustomWidget extends declared(Widget) {
   //--------------------------------------------------------------------------
   //
@@ -21,12 +26,44 @@ class CustomWidget extends declared(Widget) {
 
   //--------------------------------------------------------------------------
   //
+  //  Properties
+  //
+  //--------------------------------------------------------------------------
+
+  @property()
+  @renderable()
+  enabled = false;
+
+  //--------------------------------------------------------------------------
+  //
   //  Public Methods
   //
   //--------------------------------------------------------------------------
 
   render() {
-    return <div>Hello World</div>;
+    const { enabled } = this;
+
+    const rootClasses = {
+      [CSS.enabled]: enabled
+    };
+
+    const text = enabled ? "Enabled" : "Disabled";
+
+    return (
+      <div bind={this} onclick={this._toggle} class={this.classes(CSS.base, rootClasses)}>
+        {text}
+      </div>
+    );
+  }
+
+  //--------------------------------------------------------------------------
+  //
+  //  Private Methods
+  //
+  //--------------------------------------------------------------------------
+
+  private _toggle(): void {
+    this.enabled = !this.enabled;
   }
 }
 

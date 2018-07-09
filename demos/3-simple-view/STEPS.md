@@ -2,7 +2,7 @@
 
 ## 1. Setup Basic Class
 
-Open `WebMapShowcase.tsx` and add the following basic class to the empty file.
+Open `CustomWidget.tsx` and add the following basic class to the empty file.
 
 ```tsx
 /// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
@@ -12,10 +12,10 @@ import Widget = require("esri/widgets/Widget");
 
 import { declared, subclass } from "esri/core/accessorSupport/decorators";
 
-@subclass("esri.demo.WebMapShowcase")
-class WebMapShowcase extends declared(Widget) {}
+@subclass("esri.demo.CustomWidget")
+class CustomWidget extends declared(Widget) {}
 
-export = WebMapShowcase;
+export = CustomWidget;
 ```
 
 ## 2. Add Lifecycle Section
@@ -61,7 +61,7 @@ Open `main.ts` and setup the widget initialization.
 First require the widget
 
 ```ts
-import WebMapShowcase = require("./WebMapShowcase");
+import CustomWidget = require("./CustomWidget");
 ```
 
 Then initialize the widget.
@@ -71,9 +71,75 @@ Then initialize the widget.
 //  widget setup
 //----------------
 
-const widget = new WebMapShowcase();
+const widget = new CustomWidget();
 
 view.ui.add(widget, "top-right");
+```
+
+## Improving on CustomWidget
+
+Lets add a property to our widget
+
+```ts
+//--------------------------------------------------------------------------
+//
+//  Properties
+//
+//--------------------------------------------------------------------------
+
+@property()
+@renderable()
+enabled = false;
+```
+
+And then import renderable + property
+
+```ts
+import { renderable, tsx } from "esri/widgets/support/widget";
+import { property, declared, subclass } from "esri/core/accessorSupport/decorators";
+```
+
+Modify our render method to contain a button that toggles a class
+
+```tsx
+render() {
+  const { enabled } = this;
+
+  const rootClasses = {
+    [CSS.enabled]: enabled
+  };
+
+  const text = enabled ? "Enabled" : "Disabled";
+
+  return (
+    <div bind={this} onclick={this._toggle} class={this.classes(CSS.base, rootClasses)}>
+      {text}
+    </div>
+  );
+}
+```
+
+Add CSS constant for JSX
+
+```ts
+const CSS = {
+  base: "custom-widget",
+  enabled: "custom-widget--enabled"
+};
+```
+
+Add private method to handle event
+
+```ts
+//--------------------------------------------------------------------------
+//
+//  Private Methods
+//
+//--------------------------------------------------------------------------
+
+private _toggle(): void {
+  this.enabled = !this.enabled;
+}
 ```
 
 ## Complete
