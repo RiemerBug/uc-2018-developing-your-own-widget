@@ -52,15 +52,12 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             //  view
             //----------------------------------
             _this.view = null;
-            return _this;
-        }
-        WebMapShowcaseViewModel.prototype.initialize = function () {
-            var _this = this;
-            this._fetchWebMaps().then(function (webMaps) {
+            _this._fetchWebMaps().then(function (webMaps) {
                 _this._set("webMaps", webMaps);
                 _this._setActive(webMaps[0]); // set first as active
             });
-        };
+            return _this;
+        }
         //--------------------------------------------------------------------------
         //
         //  Public Methods
