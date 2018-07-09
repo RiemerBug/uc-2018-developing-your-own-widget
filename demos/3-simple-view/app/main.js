@@ -1,4 +1,4 @@
-define(["require", "exports", "esri/Map", "esri/views/MapView", "./CustomClass"], function (require, exports, Map, MapView, CustomClass) {
+define(["require", "exports", "esri/Map", "esri/views/MapView", "./CustomWidget"], function (require, exports, Map, MapView, CustomWidget) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     //----------------
@@ -14,10 +14,9 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "./CustomClass"]
         zoom: 15
     });
     //----------------
-    //  Custom Class setup
+    //  widget setup
     //----------------
-    var customClass = new CustomClass({ view: view });
-    // show next webmap every 10 seconds
-    setInterval(function () { return customClass.next(); }, 10000);
+    var widget = new CustomWidget();
+    view.ui.add(widget, "top-right");
 });
 //# sourceMappingURL=main.js.map

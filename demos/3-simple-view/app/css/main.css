@@ -1,1 +1,14 @@
-@import "./WebMapShowcase.css";
+.custom-widget {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  font-weight: bold;
+  color: #000;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.custom-widget--enabled {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  border: 1px solid #fff;
+}

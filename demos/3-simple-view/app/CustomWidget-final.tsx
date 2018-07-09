@@ -8,7 +8,7 @@ import { declared, subclass } from "esri/core/accessorSupport/decorators";
 import { tsx } from "esri/widgets/support/widget";
 
 @subclass("esri.demo.WebMapShowcase")
-class WebMapShowcase extends declared(Widget) {
+class CustomWidget extends declared(Widget) {
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
@@ -30,4 +30,4 @@ class WebMapShowcase extends declared(Widget) {
   }
 }
 
-export = WebMapShowcase;
+export = CustomWidget;
