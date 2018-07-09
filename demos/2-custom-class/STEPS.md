@@ -101,10 +101,12 @@
 
   We've now implemented the properties from our design. Properties defined this way can be watched for changes and initialized by a constructor object.
 
-1. Let's update the class to fetch the webmaps and populate when initialized by `Accessor`'s lifecycle.
+1. Let's update the class to fetch the webmaps and populate when initialized.
 
   ```tsx
-  initialize() {
+  constructor(props?: CustomClassProperties) {
+    super();
+    
     this._fetchWebMaps().then((webMaps) => {
       this._set("webMaps", webMaps);
       this._setActive(webMaps[0]); // set first as `active`

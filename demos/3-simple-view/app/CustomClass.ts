@@ -28,9 +28,8 @@ class CustomClass extends declared(Accessor) {
 
   constructor(props?: WebMapShowcaseProperties) {
     super();
-  }
 
-  initialize() {
+
     this._fetchWebMaps().then((webMaps) => {
       this._set("webMaps", webMaps);
       this._setActive(webMaps[0]); // set first as `active`
