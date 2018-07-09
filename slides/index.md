@@ -46,11 +46,15 @@ JS API + TypeScript
 
 ---
 
-# Demo: Dev Environment
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
+
+# Demo: [Dev Environment](../demos/1-setup/)
 
 - Install TypeScript + JS API
 
 ---
+
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
 # Demo Recap: Dev Environment
 
@@ -72,7 +76,9 @@ JS API + TypeScript
 
 ---
 
-# Demo: Custom Class
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
+
+# Demo: [Custom Class](../demos/2-custom-class/)
 
 - Write custom class
 
@@ -95,6 +101,8 @@ interface CustomClass {
 ```
 
 ---
+
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
 # Demo Recap: Development Setup
 
@@ -153,30 +161,15 @@ interface CustomClass {
 
 ---
 
-# `render` example
-
-```ts
-render() {
-  const { x, y, scale }  = this;
-
-  return (
-    <div bind={this} class={CSS.base} onclick={this._handleClick}
-         title="map info" tabIndex={0}>
-      <p>x: {x}</p>
-      <p>y: {y}</p>
-      <p>scale: {scale}</p>
-    </div>
-  );
-}
-```
-
----
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
 # Demo: [Simple View](../demos/3-simple-view/)
 
 Write simple widget that renders "Hello World"
 
 ---
+
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
 # Demo Recap: Simple View
 
@@ -228,6 +221,8 @@ Write simple widget that renders "Hello World"
 
 ---
 
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
+
 # Demo: [Updated View](../demos/4-updated-view/)
 
 - Enhance `WebMapShowCase` to use `CustomClass` as a view model
@@ -236,6 +231,8 @@ Write simple widget that renders "Hello World"
 <!--- mention BEM -->
 
 ---
+
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
 # Demo Recap: Update View
 
@@ -263,9 +260,13 @@ Write simple widget that renders "Hello World"
 
 ---
 
-# Demo: Going Further
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
+
+# Demo: [Going Further](../demos/5-final-view/)
 
 ---
+
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
 # Demo Recap: Going Further
 
