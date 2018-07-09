@@ -11,10 +11,12 @@
 
 # Agenda
 
-- Set up dev environment
+- Setup dev environment
 - Write a custom class
-- Write a widget
-- Going further
+- Write a simple widget
+- Write a custom widget
+- Enhance our custom widget
+- Discuss Widget extras
 
 ---
 
@@ -48,14 +50,13 @@ interface Person {
 
 const person: Person = { name: "Franco", age: 33 };
 
-person.age = "24"  // TS2322: Type '"24"' is not assignable to type 'number' 
+person.age = "24"; // TS2322: Type '"24"' is not assignable to type 'number'
 person.height = 5.11; // TS2339: property 'height' does not exist on type 'Person'
 ```
 
 ---
 
 # JS of the future, now
-
 
 ```ts
 // let and const
@@ -72,7 +73,7 @@ const text = `Hello. My name is ${person.name} and I am ${person.age} years old.
 const { name, age } = person;
 
 // property shorthand
-const shorthand = { person };  
+const shorthand = { person };
 ```
 
 ---
@@ -209,12 +210,13 @@ Write simple widget that renders "Hello World"
 
 ---
 
-<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
-
 # Demo Recap: Simple View
 
 - Extended `esri/widgets/Widget`
 - Implemented `render()`
+- Added a `renderable()` property
+- Added `onclick` event
+- Toggled property with event to re-render
 
 ---
 
@@ -253,10 +255,11 @@ Write simple widget that renders "Hello World"
 
 # View + ViewModel in action
 
-- View renders its state <!-- .element: class="fragment" data-fragment-index="1" -->
-  - state = view + ViewModel props <!-- .element: class="fragment" data-fragment-index="2" -->
-- View calls VMs APIs <!-- .element: class="fragment" data-fragment-index="3" -->
-  - causes a change (e.g., property or result) <!-- .element: class="fragment" data-fragment-index="4" -->
+- View renders the state of the ViewModel <!-- .element: class="fragment" data-fragment-index="1" -->
+  - state = view + ViewModel props
+- View calls VMs APIs <!-- .element: class="fragment" data-fragment-index="2" -->
+  - property modified via set or a method
+  - causes a change
 - View updates <!-- .element: class="fragment" data-fragment-index="5" -->
 
 ---
