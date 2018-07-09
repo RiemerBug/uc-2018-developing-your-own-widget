@@ -1,8 +1,6 @@
-define(["require", "exports", "esri/config", "esri/views/MapView", "./WebMapShowcase"], function (require, exports, config, MapView, WebMapShowcase) {
+define(["require", "exports", "esri/views/MapView", "./WebMapShowcase"], function (require, exports, MapView, WebMapShowcase) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    // disable prompting
-    config.request.useIdentity = false;
     //----------------
     //  map setup
     //----------------

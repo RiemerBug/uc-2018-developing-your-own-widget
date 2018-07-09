@@ -55,7 +55,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         };
         //--------------------------------------------------------------------------
         //
-        //  Public Methods
+        //  Private Methods
         //
         //--------------------------------------------------------------------------
         CustomWidget.prototype._toggle = function () {
