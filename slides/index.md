@@ -100,7 +100,7 @@ const shorthand = { person };
 
 # Demo Recap: Dev Environment
 
-- JS API ❤️️ TypeScript
+- JavaScript API ❤️️ TypeScript
 - Built mapping application
 
 ---
@@ -113,8 +113,18 @@ const shorthand = { person };
 
 # `esri/core/Accessor`
 
-- JS API foundation
-- Consistent developer experience
+- JavaScript API foundation <!-- .element: class="fragment" data-fragment-index="0" -->
+- Consistent developer experience <!-- .element: class="fragment" data-fragment-index="1" -->
+
+```ts
+// unified object constructor
+const person = new Person({ name: "Franco", age: 33 });
+
+// watch for changes to `age`
+person.watch("age", handleAgeChange);
+```
+
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
@@ -334,7 +344,7 @@ Write simple widget that renders "Hello World"
 - [Implementing Accessor](https://developers.arcgis.com/javascript/latest/guide/implementing-accessor/index.html)
 - [Setting up TypeScript](https://developers.arcgis.com/javascript/latest/guide/typescript-setup/index.html)
 - [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
-- [JS API SDK](https://developers.arcgis.com/javascript/)
+- [JavaScript API SDK](https://developers.arcgis.com/javascript/)
 - [Styling](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
 - [Widget Patterns](https://github.com/jcfranco/4x-widget-patterns)
 
