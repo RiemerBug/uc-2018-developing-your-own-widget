@@ -36,13 +36,53 @@ JS API + TypeScript
 
 # TypeScript
 
-- Typed JavaScript <!-- .element: class="fragment" data-fragment-index="1" -->
-- JS of the future, now <!-- .element: class="fragment" data-fragment-index="2" -->
-- IDE support <!-- .element: class="fragment" data-fragment-index="3" -->
-  - Visual Studio <!-- .element: class="fragment" data-fragment-index="3" -->
-  - WebStorm <!-- .element: class="fragment" data-fragment-index="3" -->
-  - Sublime <!-- .element: class="fragment" data-fragment-index="3" -->
-  - and more! <!-- .element: class="fragment" data-fragment-index="3" -->
+---
+
+# Typed JavaScript
+
+```ts
+interface Person {
+  name: string;
+  age: number;
+}
+
+const person: Person = { name: "Franco", age: 33 };
+
+person.age = "24"  // TS2322: Type '"24"' is not assignable to type 'number' 
+person.height = 5.11; // TS2339: property 'height' does not exist on type 'Person'
+```
+
+---
+
+# JS of the future, now
+
+
+```ts
+// let and const
+let canChange = 5;
+const cannotChange = 5;
+
+// fat arrow functions
+const logName = (person) => console.log(person.name);
+
+// template strings
+const text = `Hello. My name is ${person.name} and I am ${person.age} years old.`;
+
+// destructuring
+const { name, age } = person;
+
+// property shorthand
+const shorthand = { person };  
+```
+
+---
+
+# IDE Support
+
+- Visual Studio
+- WebStorm
+- Sublime Text
+- and more!
 
 ---
 
