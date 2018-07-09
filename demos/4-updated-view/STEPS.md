@@ -24,6 +24,30 @@ const customClass = new CustomClass({ view });
 setInterval(() => customClass.next(), 10000);
 ```
 
+Modify widget initialization to add view
+
+```ts
+const widget = new WebMapShowcase({ view });
+```
+
+### Modify widget constructor to take in settings
+
+Add interface for props we want to allow
+
+```ts
+interface WebMapShowcaseProperties {
+  view: MapView;
+}
+```
+
+Modify widget constructor
+
+```ts
+constructor(props: WebMapShowcaseProperties) {
+  super();
+}
+```
+
 ## Import ViewModel into Widget View
 
 Lets get the ViewModel to use it as the logic for our widget.
