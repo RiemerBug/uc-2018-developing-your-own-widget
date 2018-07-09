@@ -272,15 +272,6 @@ Write simple widget that renders "Hello World"
 
 ---
 
-# Extras
-
-- Sass
-- Prettier
-- Testing
-- `iconClass` and `label`
-
----
-
 <!-- .slide: data-background="img/bg-4.png" data-background-size="cover" -->
 <!-- Presenter: Franco -->
 
