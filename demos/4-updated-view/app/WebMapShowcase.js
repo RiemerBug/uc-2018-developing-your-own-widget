@@ -34,7 +34,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //
         //--------------------------------------------------------------------------
         WebMapShowcase.prototype.render = function () {
-            return widget_1.tsx("div", null, "Hello World");
+            return widget_1.tsx("div", { class: "custom-widget" }, "Hello World");
         };
         WebMapShowcase = __decorate([
             decorators_1.subclass("esri.demo.WebMapShowcase")

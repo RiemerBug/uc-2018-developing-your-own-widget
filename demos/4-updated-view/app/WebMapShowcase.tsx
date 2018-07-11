@@ -26,7 +26,7 @@ class WebMapShowcase extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
-    return <div>Hello World</div>;
+    return <div class="custom-widget">Hello World</div>;
   }
 }
 
