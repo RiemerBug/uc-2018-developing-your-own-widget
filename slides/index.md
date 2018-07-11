@@ -12,7 +12,7 @@
 # Agenda
 
 - Setup dev environment
-- Create:
+- Create a...
   - Custom Class
   - Simple Widget
   - Custom Widget
@@ -190,7 +190,7 @@ interface CustomClass {
 - Base widget class (View)
 - Extends `esri/core/Accessor`
   - Properties
-  - Watching
+  - Watching properties
 - Lifecycle
 
 ---
@@ -353,10 +353,10 @@ Write simple widget that renders "Hello World"
 # Final Recap
 
 - Setup dev environment <!-- .element: class="fragment" data-fragment-index="0" -->
-- Wrote a custom class  <!-- .element: class="fragment" data-fragment-index="1" -->
+- Wrote a custom class <!-- .element: class="fragment" data-fragment-index="1" -->
 - Developed a custom Widget <!-- .element: class="fragment" data-fragment-index="2" -->
 - Enhanced a Widget <!-- .element: class="fragment" data-fragment-index="3" -->
-- Went further  <!-- .element: class="fragment" data-fragment-index="4" -->
+- Went further <!-- .element: class="fragment" data-fragment-index="4" -->
 
 ---
 

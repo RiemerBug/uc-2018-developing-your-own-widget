@@ -44,7 +44,7 @@ Add the `render()` public method
 //--------------------------------------------------------------------------
 
 render() {
-  return <div>Hello World</div>;
+  return <div class="custom-widget">Hello World</div>;
 }
 ```
 

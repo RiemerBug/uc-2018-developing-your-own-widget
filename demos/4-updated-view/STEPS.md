@@ -1,6 +1,6 @@
 # Updated View Steps
 
-## 1. Convert `CustomClass` to `WebMapShowcaseViewModel`
+## Convert `CustomClass` to `WebMapShowcaseViewModel`
 
 Rename `CustomClass.ts` to `WebMapShowcaseViewModel.ts`. We will use the CustomClass as our widget's ViewModel.
 
@@ -10,6 +10,8 @@ Rename class within file.
 @subclass("esri.demo.WebMapShowcaseViewModel")
 class WebMapShowcaseViewModel extends declared(Accessor) {
 ```
+
+## Cleanup `main.ts`
 
 Remove references to `CustomClass` in `main.ts`. The following should be removed
 
@@ -30,7 +32,7 @@ Modify widget initialization to add view
 const widget = new WebMapShowcase({ view });
 ```
 
-### Modify widget constructor to take in settings
+## Modify widget constructor to take in settings
 
 Add interface for props we want to allow
 
