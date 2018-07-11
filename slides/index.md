@@ -227,7 +227,7 @@ Write simple widget that renders "Hello World"
 - Implemented `render()`
 - Added a `renderable()` property
 - Added `onclick` event
-- Added CSS Object using [BEM Methodology](http://getbem.com/)
+- Added CSS Object + [BEM Methodology](http://getbem.com/)
 - Toggled property with event to re-render
 
 ---
@@ -269,8 +269,8 @@ Write simple widget that renders "Hello World"
 
 - View renders the state of the VM <!-- .element: class="fragment" data-fragment-index="1" -->
   - Looks at properties on VM and renders accordingly
-- User interacts with View <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Causes a change on VM (property/method)
+- User interacts with View (property/method)<!-- .element: class="fragment" data-fragment-index="2" -->
+  - Causes a change on VM or View
 - View updates <!-- .element: class="fragment" data-fragment-index="5" -->
   - Renders again due to changes on VM
 
