@@ -183,3 +183,34 @@
   ```
 
   We have now implemented our class and we can test it in our demo page.
+
+1. We can now update the application from the previous demo and bring in our `CustomClass`.
+
+```ts
+import Map = require("esri/Map");
+import MapView = require("esri/views/MapView");
+
+// import our new class
+import CustomClass = require("./CustomClass");
+
+//----------------
+//  map setup
+//----------------
+
+const map = new Map({
+  basemap: "streets-vector"
+});
+
+const view = new MapView({
+  map,
+  container: "viewDiv",
+  center: [-117.1628487109789, 32.706813240831096],
+  zoom: 15
+});
+
+// create an instance of our new class
+const custom = new CustomClass({ view });
+
+// set timer to set next webmap from portal
+setInterval(() => custom.next(), 5000);
+```
