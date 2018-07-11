@@ -13,6 +13,18 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
 
 ## Cleanup `main.ts`
 
+Remove import to CustomClass
+
+```ts
+import CustomClass = require("./CustomClass");
+```
+
+Add import WebMapShowcaseViewModel
+
+```ts
+import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
+```
+
 Remove references to `CustomClass` in `main.ts`. The following should be removed
 
 ```ts
