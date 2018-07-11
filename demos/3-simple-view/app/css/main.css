@@ -1,14 +1,12 @@
 .custom-widget {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 0, 0);
   padding: 30px;
   font-weight: bold;
-  color: #000;
-  border: 1px solid #000;
+  color: white;
+  border: 1px solid white;
   cursor: pointer;
 }
 
 .custom-widget--enabled {
-  background-color: rgba(0, 0, 0, 0.9);
-  color: #fff;
-  border: 1px solid #fff;
+  background-color: rgba(0, 0, 255);
 }
