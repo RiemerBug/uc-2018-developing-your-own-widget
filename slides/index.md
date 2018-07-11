@@ -332,19 +332,10 @@ Write simple widget that renders "Hello World"
 
 <!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
-# Demo: [Going Further (`a11y`)](../demos/5-final-view/)
-
-- Update markup to be accessible
-
----
-
-<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
-
 # Demo Recap: Going Further
 
 - Improved UX
 - Added support for extra locale
-- Made accessible
 
 ---
 
