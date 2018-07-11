@@ -99,7 +99,7 @@ const shorthand = { person };
 
 # Demo Recap: Dev Environment
 
-- Installed TypeScript + JS API typings ❤️
+- Installed TypeScript + JS API typings️
 - Built mapping application
 
 ---
