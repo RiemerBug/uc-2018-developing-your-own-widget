@@ -339,15 +339,16 @@ Write simple widget that renders "Hello World"
 
 ---
 
+<!-- Presenter: Matt -->
 <!-- .slide: data-background="img/bg-4.png" data-background-size="cover" -->
 
 # Final Recap
 
-- Setup dev environment <!-- .element: class="fragment" data-fragment-index="0" -->
-- Wrote a custom class <!-- .element: class="fragment" data-fragment-index="1" -->
-- Developed a custom Widget <!-- .element: class="fragment" data-fragment-index="2" -->
-- Enhanced a Widget <!-- .element: class="fragment" data-fragment-index="3" -->
-- Went further <!-- .element: class="fragment" data-fragment-index="4" -->
+- Setup dev environment
+- Wrote a custom class
+- Developed a custom Widget
+- Enhanced a Widget
+- Went further
 
 ---
 
