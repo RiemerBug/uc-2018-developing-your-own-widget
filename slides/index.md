@@ -332,10 +332,11 @@ Write simple widget that renders "Hello World"
 
 # Final Recap
 
-- Set up dev environment
-- Write a custom class
-- Write a widget
-- Going further
+- Setup dev environment
+- Wrote a custom class
+- Developed a custom Widget
+- Enhanced a Widget
+- Went further
 
 ---
 
