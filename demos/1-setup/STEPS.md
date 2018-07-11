@@ -18,7 +18,13 @@
   npm install --save-dev typescript @types/arcgis-js-api
   ```
 
-1. Create a config file (`tsconfig.json`) for the [TypeScript compiler](https://developers.arcgis.com/javascript/latest/guide/typescript-setup/index.html#compile-typescript)
+1. Initialize TypeScript for the current project
+
+  ```
+  tsc --init
+  ```
+
+1. The previous step creates a config file (`tsconfig.json`) for the TypeScript compiler with defaults and lists all possible options. For our demo, well copy over base configuration options from the [ArcGIS JS API TypeScript setup guide page](https://developers.arcgis.com/javascript/latest/guide/typescript-setup/index.html#compile-typescript)
 
   ```json
   {
