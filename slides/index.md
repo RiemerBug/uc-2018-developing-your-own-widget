@@ -170,17 +170,19 @@ interface CustomClass {
   - Reusable
   - Interchangeable
 - How? <!-- .element: class="fragment" data-fragment-index="3" -->
-  - `esri/Widgets/Widget`
+  - Extend `esri/Widgets/Widget`
 
 ---
 
 # `esri/widgets/Widget`
 
-- Lifecycle
+- Base widget class
 - API consistency
   - Unified object constructor
   - Properties
   - Watching
+  - Rendering
+- Lifecycle
 
 ---
 
@@ -196,7 +198,7 @@ interface CustomClass {
 # `render`
 
 - Defines UI
-- Reacts to state
+- Reacts to state changes
 - Uses JSX
 - VDOM
 
@@ -228,7 +230,7 @@ Write simple widget that renders "Hello World"
 
 # Architecture
 
-- Separation of concerns <!-- .element: class="fragment" data-fragment-index="2" -->
+- Separation of concerns
   - Views + ViewModels
   - UI replacement
   - Easier integration
@@ -256,10 +258,9 @@ Write simple widget that renders "Hello World"
 # View + ViewModel in action
 
 - View renders the state of the ViewModel <!-- .element: class="fragment" data-fragment-index="1" -->
-  - state = view + ViewModel props
 - View calls VMs APIs <!-- .element: class="fragment" data-fragment-index="2" -->
-  - property modified via set or a method
-  - causes a change
+  - property modified or method called
+  - causes a change on state of VM
 - View updates <!-- .element: class="fragment" data-fragment-index="5" -->
 
 ---
@@ -274,8 +275,6 @@ Write simple widget that renders "Hello World"
 <!--- mention BEM -->
 
 ---
-
-<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
 # Demo Recap: Update View
 
