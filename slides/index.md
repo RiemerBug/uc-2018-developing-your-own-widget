@@ -227,6 +227,7 @@ Write simple widget that renders "Hello World"
 - Implemented `render()`
 - Added a `renderable()` property
 - Added `onclick` event
+- Added CSS Object using [BEM Methodology](http://getbem.com/)
 - Toggled property with event to re-render
 
 ---
