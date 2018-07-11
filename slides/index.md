@@ -12,11 +12,12 @@
 # Agenda
 
 - Setup dev environment
-- Write a custom class
-- Write a simple widget
-- Write a custom widget
-- Enhance our custom widget
-- Discuss Widget extras
+- Create:
+  - Custom Class
+  - Simple Widget
+  - Custom Widget
+- Enhance Custom Widget
+- Going further with Widgets
 
 ---
 
@@ -176,7 +177,7 @@ interface CustomClass {
 
 # `esri/widgets/Widget`
 
-- Base widget class
+- Base widget class (View)
 - API consistency
   - Unified object constructor
   - Properties
@@ -239,29 +240,31 @@ Write simple widget that renders "Hello World"
 
 # Views
 
-- <!-- .element: class="fragment" data-fragment-index="1" --> Extend `esri/widgets/Widget`
-- Rely on ViewModel <!-- .element: class="fragment" data-fragment-index="2" -->
-- Focus on UI <!-- .element: class="fragment" data-fragment-index="3" -->
+- Extend `esri/widgets/Widget`
+- Rely on ViewModel
+- Focus on UI
 
 ---
 
 # ViewModels
 
-<!-- front-loaded to fade entire fragment -->
-
-- <!-- .element: class="fragment" data-fragment-index="1" --> Extend `esri/core/Accessor`
-- Provide APIs to support view <!-- .element: class="fragment" data-fragment-index="2" -->
-- Focus on business logic <!-- .element: class="fragment" data-fragment-index="3" -->
+- Extend `esri/core/Accessor`
+- Provide APIs to support View
+- Focus on business logic
 
 ---
 
 # View + ViewModel in action
 
-- View renders the state of the ViewModel <!-- .element: class="fragment" data-fragment-index="1" -->
+- View renders the state of the VM <!-- .element: class="fragment" data-fragment-index="1" -->
+  - Looks at properties on VM and renders accordingly
 - View calls VMs APIs <!-- .element: class="fragment" data-fragment-index="2" -->
-  - property modified or method called
+  - Some interaction occurs
+    - property modified
+    - method called
   - causes a change on state of VM
 - View updates <!-- .element: class="fragment" data-fragment-index="5" -->
+  - Renders again due to changes on VM
 
 ---
 
@@ -269,8 +272,8 @@ Write simple widget that renders "Hello World"
 
 # Demo: [Updated View](../demos/4-updated-view/)
 
-- Enhance `WebMapShowCase` to use `CustomClass` as a view model
-- Render details from the active webmap portal item
+- Enhance `WebMapShowCase` to use `CustomClass` as VM
+- Render details from the `active` portal item
 
 <!--- mention BEM -->
 
@@ -278,8 +281,8 @@ Write simple widget that renders "Hello World"
 
 # Demo Recap: Update View
 
-- Paired view and viewmodel
-- Rendered property from viewmodel
+- Paired View and ViewModel
+- Rendered property from ViewModel
 - Wired up interactivity
 - Learned to apply styles
 - Dynamically rendered UI based on a property value

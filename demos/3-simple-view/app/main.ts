@@ -1,8 +1,6 @@
 import Map = require("esri/Map");
 import MapView = require("esri/views/MapView");
 
-import CustomWidget = require("./CustomWidget");
-
 //----------------
 //  map setup
 //----------------
@@ -17,11 +15,3 @@ const view = new MapView({
   center: [-117.1628487109789, 32.706813240831096],
   zoom: 15
 });
-
-//----------------
-//  widget setup
-//----------------
-
-const widget = new CustomWidget();
-
-view.ui.add(widget, "top-right");

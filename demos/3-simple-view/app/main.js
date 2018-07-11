@@ -1,4 +1,4 @@
-define(["require", "exports", "esri/Map", "esri/views/MapView", "./CustomWidget"], function (require, exports, Map, MapView, CustomWidget) {
+define(["require", "exports", "esri/Map", "esri/views/MapView"], function (require, exports, Map, MapView) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     //----------------
@@ -13,10 +13,5 @@ define(["require", "exports", "esri/Map", "esri/views/MapView", "./CustomWidget"
         center: [-117.1628487109789, 32.706813240831096],
         zoom: 15
     });
-    //----------------
-    //  widget setup
-    //----------------
-    var widget = new CustomWidget();
-    view.ui.add(widget, "top-right");
 });
 //# sourceMappingURL=main.js.map
