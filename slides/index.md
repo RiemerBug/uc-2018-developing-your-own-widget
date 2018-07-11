@@ -99,7 +99,7 @@ const shorthand = { person };
 
 # Demo Recap: Dev Environment
 
-- JavaScript API ❤️️ TypeScript
+- Installed TypeScript + JS API typings ❤️
 - Built mapping application
 
 ---
@@ -117,10 +117,10 @@ const shorthand = { person };
 
 ```ts
 // unified object constructor
-const person = new Person({ name: "Franco", age: 33 });
+const me = new Person({ name: "Franco", age: 33 });
 
 // watch for changes to `age`
-person.watch("age", handleAgeChange);
+me.watch("age", singHappyBirthday);
 ```
 
 <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -131,9 +131,8 @@ person.watch("age", handleAgeChange);
 
 # Demo: [Custom Class](../demos/2-custom-class/)
 
-- Write custom class
-
 ```ts
+// fetches webmaps from a portal and provides APIs to work with them
 interface CustomClass {
   // used to fetch webmaps items
   portal: Portal;
@@ -155,11 +154,13 @@ interface CustomClass {
 
 <!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
-# Demo Recap: Development Setup
+# Demo Recap: Custom Class
 
 - Implemented `CustomClass`
-  - Properties + methods
-  - TypeScript
+  - Extended `esri/core/Accessor`
+  - Created properties with `@property`
+  - Typed constructor arguments
+  - Created public + private methods
 
 ---
 
@@ -317,7 +318,7 @@ Write simple widget
 
 - Auto-cycle through webmaps
 - Show timer in UI
-- Allow cycle play/pause
+- Support play/pause
 
 ---
 
