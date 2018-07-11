@@ -188,11 +188,9 @@ interface CustomClass {
 # `esri/widgets/Widget`
 
 - Base widget class (View)
-- API consistency
-  - Unified object constructor
+- Extends `esri/core/Accessor`
   - Properties
   - Watching
-  - Rendering
 - Lifecycle
 
 ---
@@ -266,13 +264,12 @@ Write simple widget that renders "Hello World"
 
 # View + ViewModel in action
 
+<!-- todo: maybe create graphic for this -->
+
 - View renders the state of the VM <!-- .element: class="fragment" data-fragment-index="1" -->
   - Looks at properties on VM and renders accordingly
-- View calls VMs APIs <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Some interaction occurs
-    - property modified
-    - method called
-  - causes a change on state of VM
+- User interacts with View <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Causes a change on VM (property/method)
 - View updates <!-- .element: class="fragment" data-fragment-index="5" -->
   - Renders again due to changes on VM
 
@@ -282,7 +279,7 @@ Write simple widget that renders "Hello World"
 
 # Demo: [Updated View](../demos/4-updated-view/)
 
-- Enhance `WebMapShowCase` to use `CustomClass` as VM
+- Create `WebMapShowCase` to use `CustomClass` as VM
 - Render details from the `active` portal item
 
 <!--- mention BEM -->
