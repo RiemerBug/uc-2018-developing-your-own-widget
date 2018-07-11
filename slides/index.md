@@ -306,15 +306,35 @@ Write simple widget that renders "Hello World"
 
 # Going Further
 
-- `i18n`
-- `a11y`
-- Improve UX
+- <!-- .element: class="fragment" data-fragment-index="0" -->Improve UX
+- <!-- .element: class="fragment" data-fragment-index="1" -->Internationalization (`i18n`)
+- <!-- .element: class="fragment" data-fragment-index="2" -->Accessibility (`a11y`)
 
 ---
 
 <!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
-# Demo: [Going Further](../demos/5-final-view/)
+# Demo: [Going Further (UX)](../demos/5-final-view/)
+
+- Auto-cycle through webmaps
+- Show timer in UI
+- Allow cycle play/pause
+
+---
+
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
+
+# Demo: [Going Further (`i18n`)](../demos/6-i18n-view/)
+
+- Localize widget
+
+---
+
+<!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
+
+# Demo: [Going Further (`a11y`)](../demos/5-final-view/)
+
+- Update markup to be accessible
 
 ---
 
@@ -322,18 +342,21 @@ Write simple widget that renders "Hello World"
 
 # Demo Recap: Going Further
 
+- Improved UX
+- Added support for extra locale
+- Made accessible
+
 ---
 
 <!-- .slide: data-background="img/bg-4.png" data-background-size="cover" -->
-<!-- Presenter: Franco -->
 
 # Final Recap
 
-- Setup dev environment
-- Wrote a custom class
-- Developed a custom Widget
-- Enhanced a Widget
-- Went further
+- Setup dev environment <!-- .element: class="fragment" data-fragment-index="0" -->
+- Wrote a custom class  <!-- .element: class="fragment" data-fragment-index="1" -->
+- Developed a custom Widget <!-- .element: class="fragment" data-fragment-index="2" -->
+- Enhanced a Widget <!-- .element: class="fragment" data-fragment-index="3" -->
+- Went further  <!-- .element: class="fragment" data-fragment-index="4" -->
 
 ---
 
