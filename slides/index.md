@@ -17,7 +17,6 @@
   - Simple Widget
   - Custom Widget
 - Enhance Custom Widget
-- Going further with Widgets
 
 ---
 
@@ -208,8 +207,7 @@ interface CustomClass {
 
 - Defines UI
 - Reacts to state changes
-- Uses JSX
-- VDOM
+- Uses JSX (VDOM)
 
 ---
 
@@ -217,7 +215,7 @@ interface CustomClass {
 
 # Demo: [Simple View](../demos/3-simple-view/)
 
-Write simple widget that renders "Hello World"
+Write simple widget
 
 ---
 
