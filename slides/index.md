@@ -11,7 +11,7 @@
 
 # Agenda
 
-- Setup dev environment
+- Set up dev environment
 - Create a...
   - Custom Class
   - Simple Widget
@@ -67,7 +67,7 @@ const cannotChange = 5;
 const logName = (person) => console.log(person.name);
 
 // template strings
-const text = `Hello. My name is ${person.name} and I am ${person.age} years old.`;
+const greeting = `Hello, my name is ${person.name} and I am ${person.age} years old.`;
 
 // destructuring
 const { name, age } = person;
@@ -99,7 +99,7 @@ const shorthand = { person };
 
 # Demo Recap: Dev Environment
 
-- Installed TypeScript + JS API typings️
+- Installed TypeScript + JS API typings
 - Built mapping application
 
 ---
