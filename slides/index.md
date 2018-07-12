@@ -344,7 +344,7 @@ Write simple widget
 
 # Final Recap
 
-- Setup dev environment
+- Set up dev environment
 - Wrote a custom class
 - Developed a custom Widget
 - Enhanced a Widget
